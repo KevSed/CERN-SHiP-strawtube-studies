@@ -1,0 +1,4 @@
+\select@language {german}
+\beamer@sectionintoc {1}{data sets}{3}{0}{1}
+\beamer@sectionintoc {2}{Target IP}{5}{0}{2}
+\beamer@sectionintoc {3}{MC truth and Particle dist.}{16}{0}{3}

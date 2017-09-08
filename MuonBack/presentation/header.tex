@@ -1,0 +1,63 @@
+\documentclass[aspectratio=1610, professionalfonts, 13pt]{beamer}
+
+% Lade das TU Dortund Theme von Max Nöthe
+\usefonttheme[onlymath]{serif}
+\usetheme[showtotalframes]{tudo}
+
+% Lade richtiges Sprachpaket
+\ifluatex
+    \usepackage{polyglossia}
+    \setmainlanguage{german}
+\else
+    \ifxetex
+        \usepackage{polyglossia}
+        \setmainlanguage{german}
+    \else
+        \usepackage[german]{babel}
+    \fi
+\fi
+
+% Lade wichtige Mathematikpakete
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{cancel}
+\usepackage[
+  locale=DE,                   % deutsche Einstellungen
+  separate-uncertainty=true,   % Immer Fehler mit \pm
+  per-mode=symbol-or-fraction, % m/s im Text, sonst Brüche
+]{siunitx}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{framed}
+\usepackage{multicol}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{appendixnumberbeamer}
+\usepackage{tikz}
+\usepackage[export]{adjustbox}
+
+
+% Lade Paket zur Nutzung von Schleifen
+\usepackage{forloop}
+
+% ------------------------- Präsentationsinformationen -------------------------
+
+% Titel:
+\title{\textbf{Summerstudent project 2017}}
+\subtitle{SHiP}
+
+% Autoren:
+\author{Kevin Sedlaczek}
+
+% Datum:
+\date{July to September 2017}
+
+% Lehrstuhl/Fakultät:
+\institute[CERN]{Search for Hidden Particles}
+
+% Titelgrafik:
+\titlegraphic{\includegraphics[width=0.25\textwidth]{CERN-logo.jpg}\hfill\includegraphics[width=0.25\textwidth]{SHiP-Full_Black_0.png}}
+
+% ------------------------------------------------------------------------------
