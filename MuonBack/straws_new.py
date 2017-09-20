@@ -2,8 +2,12 @@ from __future__ import division
 import ROOT as r
 import matplotlib.pyplot as plt
 import numpy as np
-from decorators import *
+import math
+#from decorators import *
 import sys
+
+if len(sys.argv)==1:
+    sys.exit("Please choose one of the flags -new -old -all and repeat.")
 
 ##################################################################################
 ##################################################################################
@@ -39,43 +43,109 @@ def print_progress(iteration, total, prefix='', suffix='', decimals=1, bar_lengt
 if not '-showCanvas' in sys.argv:
     r.gROOT.SetBatch(r.kTRUE)
 
-# read the rootfile
-f00 = r.TFile("/eos/user/k/ksedlacz/files/new/1M-00-MuonBack-new_rec.root", "READ")
-f02 = r.TFile("/eos/user/k/ksedlacz/files/new/02-100000-MuonBack-new_rec.root", "READ")
-f04 = r.TFile("/eos/user/k/ksedlacz/files/new/04-100000-MuonBack-new_rec.root", "READ")
-f06 = r.TFile("/eos/user/k/ksedlacz/files/new/06-100000-MuonBack-new_rec.root", "READ")
-f08 = r.TFile("/eos/user/k/ksedlacz/files/new/08-100000-MuonBack-new_rec.root", "READ")
-f10 = r.TFile("/eos/user/k/ksedlacz/files/new/10-100000-MuonBack-new_rec.root", "READ")
-f18 = r.TFile("/eos/user/k/ksedlacz/files/new/18-100000-MuonBack-new_rec.root", "READ")
-t00 = f00.cbmsim
-t02 = f02.cbmsim
-t04 = f04.cbmsim
-t06 = f06.cbmsim
-t08 = f08.cbmsim
-t10 = f10.cbmsim
-t18 = f18.cbmsim
 
+h00 = r.TH2D('h00','x:y hits in 1st plane of T1 B-field=0.0 (mc/weights)',160,-600,600,160,-600,600)
+h01 = r.TH2D('h01','x:y hits in 1st plane of T1 B-field=0.1 (mc/weights)',160,-600,600,160,-600,600)
+h02 = r.TH2D('h02','x:y hits in 1st plane of T1 B-field=0.2 (mc/weights)',160,-600,600,160,-600,600)
+h04 = r.TH2D('h04','x:y hits in 1st plane of T1 B-field=0.4 (mc/weights)',160,-600,600,160,-600,600)
+h06 = r.TH2D('h06','x:y hits in 1st plane of T1 B-field=0.6 (mc/weights)',160,-600,600,160,-600,600)
+h08 = r.TH2D('h08','x:y hits in 1st plane of T1 B-field=0.8 (mc/weights)',160,-600,600,160,-600,600)
+h10 = r.TH2D('h10','x:y hits in 1st plane of T1 B-field=1.0 (mc/weights)',160,-600,600,160,-600,600)
+h12 = r.TH2D('h12','x:y hits in 1st plane of T1 B-field=1.2 (mc/weights)',160,-600,600,160,-600,600)
+h14 = r.TH2D('h14','x:y hits in 1st plane of T1 B-field=1.4 (mc/weights)',160,-600,600,160,-600,600)
+h16 = r.TH2D('h16','x:y hits in 1st plane of T1 B-field=1.6 (mc/weights)',160,-600,600,160,-600,600)
+h18 = r.TH2D('h18','x:y hits in 1st plane of T1 B-field=1.8 (mc/weights)',160,-600,600,160,-600,600)
 
-trees = [t00,t02,t04,t06,t08,t10,t18]
-fields = [0.0,0.2,0.4,0.6,0.8,1.0,1.8]
-
-h00 = r.TH2D('h00','x:y hits in 2nd plane of T1 B-field=0.0 (mc/weights)',160,-600,600,160,-600,600)
-h01 = r.TH2D('h01','x:y hits in 2nd plane of T1 B-field=0.2 (mc/weights)',160,-600,600,160,-600,600)
-h02 = r.TH2D('h02','x:y hits in 2nd plane of T1 B-field=0.4 (mc/weights)',160,-600,600,160,-600,600)
-h04 = r.TH2D('h04','x:y hits in 2nd plane of T1 B-field=0.6 (mc/weights)',160,-600,600,160,-600,600)
-h06 = r.TH2D('h06','x:y hits in 2nd plane of T1 B-field=0.8 (mc/weights)',160,-600,600,160,-600,600)
-h10 = r.TH2D('h10','x:y hits in 2nd plane of T1 B-field=1.0 (mc/weights)',160,-600,600,160,-600,600)
-h18 = r.TH2D('h18','x:y hits in 2nd plane of T1 B-field=1.8 (mc/weights)',160,-600,600,160,-600,600)
-
-z00 = r.TH1D('z00','z B-field=0.0 (reco) T1',250,2580,2586)
+z00 = r.TH1D('z00','strawtubesPoint z B-field=0.0 T1',250,2580,2598)
 z00.SetStats(False)
 
-hists = [h00,h01,h02,h04,h06,h10,h18]
-texts = [0,0,0,0,0,0,0]
-xprojections = [0,0,0,0,0,0,0]
-yprojections = [0,0,0,0,0,0,0]
-xtexts = [0,0,0,0,0,0,0]
-ytexts = [0,0,0,0,0,0,0]
+PDG = r.TH1D('PDG','particle distribution at T1',60,-30,30)
+PDG.SetStats(False)
+
+if '-new' in sys.argv:
+    f00 = r.TFile("/eos/user/k/ksedlacz/files/new/1M-00-MuonBack-new_rec.root", "READ")
+    f02 = r.TFile("/eos/user/k/ksedlacz/files/new/02-100000-MuonBack-new_rec.root", "READ")
+    f04 = r.TFile("/eos/user/k/ksedlacz/files/new/04-100000-MuonBack-new_rec.root", "READ")
+    f06 = r.TFile("/eos/user/k/ksedlacz/files/new/06-100000-MuonBack-new_rec.root", "READ")
+    f08 = r.TFile("/eos/user/k/ksedlacz/files/new/08-100000-MuonBack-new_rec.root", "READ")
+    f10 = r.TFile("/eos/user/k/ksedlacz/files/new/10-100000-MuonBack-new_rec.root", "READ")
+    f14 = r.TFile("/eos/user/k/ksedlacz/files/new/14-100000-MuonBack-new_rec.root", "READ")
+    f18 = r.TFile("/eos/user/k/ksedlacz/files/new/18-100000-MuonBack-new_rec.root", "READ")
+    directory='new'
+    t00 = f00.cbmsim
+    t02 = f02.cbmsim
+    t04 = f04.cbmsim
+    t06 = f06.cbmsim
+    t08 = f08.cbmsim
+    t10 = f10.cbmsim
+    t14 = f14.cbmsim
+    t18 = f18.cbmsim
+    trees = [t00,t02,t04,t06,t08,t10,t14,t18]
+    hists = [h00,h02,h04,h06,h08,h10,h14,h18]
+    fields = [0.0,0.2,0.4,0.6,0.8,1.0,1.4,1.8]
+    texts = [0,0,0,0,0,0,0,0]
+    xprojections = [0,0,0,0,0,0,0,0]
+    yprojections = [0,0,0,0,0,0,0,0]
+    xtexts = [0,0,0,0,0,0,0,0]
+    ytexts = [0,0,0,0,0,0,0,0]
+
+if '-old' in sys.argv:
+    f00 = r.TFile("/eos/user/k/ksedlacz/files/old/00-100000-MuonBack_rec.root", "READ")
+    f01 = r.TFile("/eos/user/k/ksedlacz/files/old/01-100000-MuonBack_rec.root", "READ")
+    f02 = r.TFile("/eos/user/k/ksedlacz/files/old/02-100000-MuonBack_rec.root", "READ")
+    f04 = r.TFile("/eos/user/k/ksedlacz/files/old/04-100000-MuonBack_rec.root", "READ")
+    f06 = r.TFile("/eos/user/k/ksedlacz/files/old/06-100000-MuonBack_rec.root", "READ")
+    f10 = r.TFile("/eos/user/k/ksedlacz/files/old/10-100000-MuonBack_rec.root", "READ")
+    f12 = r.TFile("/eos/user/k/ksedlacz/files/old/12-100000-MuonBack_rec.root", "READ")
+    directory='old'
+    t00 = f00.cbmsim
+    t01 = f01.cbmsim
+    t02 = f02.cbmsim
+    t04 = f04.cbmsim
+    t06 = f06.cbmsim
+    #t08 = f08.cbmsim
+    t10 = f10.cbmsim
+    t12 = f12.cbmsim
+    trees = [t00,t01,t02,t04,t06,t10,t12]
+    hists = [h00,h01,h02,h04,h06,h10,h12]
+    fields = [0.0,0.1,0.2,0.4,0.6,1.0,1.2]
+    texts = [0,0,0,0,0,0,0]
+    xprojections = [0,0,0,0,0,0,0]
+    yprojections = [0,0,0,0,0,0,0]
+    xtexts = [0,0,0,0,0,0,0]
+    ytexts = [0,0,0,0,0,0,0]
+
+if '-all' in sys.argv:
+    f00 = r.TFile("/eos/user/k/ksedlacz/files/all-lep/00-100000-MuonBack_rec.root", "READ")
+    f02 = r.TFile("/eos/user/k/ksedlacz/files/all-lep/02-100000-MuonBack_rec.root", "READ")
+    f04 = r.TFile("/eos/user/k/ksedlacz/files/all-lep/04-100000-MuonBack_rec.root", "READ")
+    f06 = r.TFile("/eos/user/k/ksedlacz/files/all-lep/06-100000-MuonBack_rec.root", "READ")
+    f08 = r.TFile("/eos/user/k/ksedlacz/files/all-lep/08-100000-MuonBack_rec.root", "READ")
+    f10 = r.TFile("/eos/user/k/ksedlacz/files/all-lep/10-100000-MuonBack_rec.root", "READ")
+    f12 = r.TFile("/eos/user/k/ksedlacz/files/all-lep/12-100000-MuonBack_rec.root", "READ")
+    f14 = r.TFile("/eos/user/k/ksedlacz/files/all-lep/14-100000-MuonBack_rec.root", "READ")
+    f16 = r.TFile("/eos/user/k/ksedlacz/files/all-lep/16-100000-MuonBack_rec.root", "READ")
+    f18 = r.TFile("/eos/user/k/ksedlacz/files/all-lep/18-100000-MuonBack_rec.root", "READ")
+    directory='all'
+    t00 = f00.cbmsim
+    t02 = f02.cbmsim
+    t04 = f04.cbmsim
+    t06 = f06.cbmsim
+    t08 = f08.cbmsim
+    t10 = f10.cbmsim
+    t12 = f12.cbmsim
+    t14 = f14.cbmsim
+    t16 = f16.cbmsim
+    t18 = f18.cbmsim
+    trees = [t00,t02,t04,t06,t08,t10,t12,t14,t16,t18]
+    hists = [h00,h02,h04,h06,h08,h10,h12,h14,h16,h18]
+    fields = [0.0,0.2,0.4,0.6,0.8,1.0,1.2,1.4,1.6,1.8]
+    texts = [0,0,0,0,0,0,0,0,0,0]
+    xprojections = [0,0,0,0,0,0,0,0,0,0]
+    yprojections = [0,0,0,0,0,0,0,0,0,0]
+    xtexts = [0,0,0,0,0,0,0,0,0,0]
+    ytexts = [0,0,0,0,0,0,0,0,0,0]
+
 
 for hist in hists:
     hist.SetStats(False)
@@ -101,20 +171,21 @@ for tree in trees:
             pz = hit.GetPz()
             for track in event.MCTrack:
                 w = track.GetWeight()
-                mu = track.GetPdgCode()
-                if z<2583 and z>2582:
-                    if mu==13:
+                pdg = track.GetPdgCode()
+                if z<2581.5 and z>2580:
+                    PDG.Fill(pdg,w)
+                    if pdg ==13:
                         muon=muon+1
-                    if mu==-13:
+                    if pdg ==-13:
                         amuon=amuon+1
-                    if mu==11:
+                    if pdg ==11:
                         electron=electron+1
-                    if mu==-11:
+                    if pdg ==-11:
                         aelectron=aelectron+1
-                    hists[n].Fill(x,y,w*17800000/tree.GetEntries())
+                    hists[n].Fill(x,y,w*17786274/tree.GetEntries())
                 if n==0:
-                    if z<2586 and z>2580:
-                        z00.Fill(z,w*17800000/tree.GetEntries())
+                    if z<2598 and z>2580:
+                        z00.Fill(z,w*17786274/tree.GetEntries())
         print_progress(j + 1, l, prefix = 'Progress:', suffix = 'Complete')
     texts[n] = r.TLatex(.13,.85,"entries: {:.2g}, #mu-: {}, #mu+: {}, e-:{}, e+:{}".format(hists[n].Integral(),muon,amuon,electron,aelectron))
     texts[n].SetTextSize(0.035)
@@ -136,20 +207,21 @@ for tree in trees:
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #           Combined
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-lc1 = r.TCanvas('can', 'can', 2*950,4*650)
-lc1.Divide(2,4)
+num = np.rint(len(trees)/2.)
+nom = num*650
 
-h = 1
+h = 0
 for hist in hists:
-    lc1.cd(h)
+    cans = r.TCanvas('cans', 'cans', 950,650)
+    cans.cd(1)
     hist.Draw('COLZ')
     hist.GetXaxis().SetTitle('x-Point in strawtubes')
     hist.GetYaxis().SetTitle('y-Point')
-    texts[h-1].Draw()
+    texts[h].Draw()
+    cans.Draw()
+    cans.SaveAs('hists/strawtubes/{}/xy_{}.pdf'.format(directory,int(fields[h]*10)))
+    cans.Close()
     h = h+1
-lc1.Draw()
-lc1.SaveAs('hists/strawtubes/new/strawtubesPoint_xy_all7_rec.pdf')
-lc1.Close()
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #           z distribution
@@ -158,39 +230,72 @@ c_z = r.TCanvas('c_z', 'c_z', 950,650)
 
 c_z.cd(1)
 z00.Draw('HIST BAR')
-z00.GetXaxis().SetTitle('z hits in strawtubes T1')
+z00.GetXaxis().SetTitle('z positions around T1')
+z00.GetYaxis().SetTitle('hits/s')
 c_z.Draw()
-c_z.SaveAs('hists/strawtubes/new/strawtubesPoint_z_T1.pdf')
+c_z.SaveAs('hists/strawtubes/{}/z_T1.pdf'.format(directory))
 c_z.Close()
 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# X/Y projections
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#           particle distribution
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-cproj = r.TCanvas('cproj', 'cproj', 2*950,7*650)
-cproj.Divide(2,7)
+t_mu = r.TLatex(13, 100e6,"#mu^{-}")
+t_mu.SetTextSize(0.04)
+t_mu.SetTextColor(r.kBlack)
 
-h = 0
-for xhist in xprojections:
-    cproj.cd(2*h+1)
-    xhist.Draw('HIST BAR')
-    xhist.GetXaxis().SetTitle('x')
-    xtexts[h].Draw()
-    h = h+1
-h = 1
-for yhist in yprojections:
-    cproj.cd(2*h)
-    yhist.Draw('HIST BAR')
-    yhist.GetXaxis().SetTitle('y')
-    ytexts[h-1].Draw()
-    h = h+1
-cproj.Draw()
-cproj.SaveAs('hists/strawtubes/new/strawtubesPoint_proj_all7_rec.pdf')
-cproj.Close()
+t_amu = r.TLatex(-13, 100e6,"#mu^{+}")
+t_amu.SetTextSize(0.04)
+t_amu.SetTextColor(r.kBlack)
 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+t_el = r.TLatex(9.5, 500e6,"e^{-}")
+t_el.SetTextSize(0.04)
+t_el.SetTextColor(r.kBlack)
+
+t_ael = r.TLatex(-11, 500e6,"e^{+}")
+t_ael.SetTextSize(0.04)
+t_ael.SetTextColor(r.kBlack)
+
+t_gam = r.TLatex(24, 500e6,"#gamma")
+t_gam.SetTextSize(0.04)
+t_gam.SetTextColor(r.kBlack)
+
+c_pdg = r.TCanvas('c_pdg', 'c_pdg', 950,650)
+
+c_pdg.cd(1)
+PDG.Draw('HIST BAR')
+PDG.GetXaxis().SetTitle('particle ID at T1')
+t_mu.Draw()
+t_amu.Draw()
+t_el.Draw()
+t_ael.Draw()
+t_gam.Draw()
+c_pdg.Draw()
+c_pdg.SaveAs('hists/strawtubes/{}/pdg_T1.pdf'.format(directory))
+c_pdg.Close()
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#         X/Y projections
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+for h in range(len(xprojections)):
+    cproj = r.TCanvas('cproj', 'cproj', 2*950,650)
+    cproj.Divide(2,1)
+    cproj.cd(1)
+    xprojections[h].Draw('HIST BAR')
+    xprojections[h].GetXaxis().SetTitle('x')
+    #xtexts[h].Draw()
+    cproj.cd(2)
+    yprojections[h].Draw('HIST BAR')
+    yprojections[h].GetXaxis().SetTitle('y')
+    #ytexts[h].Draw()
+    cproj.Draw()
+    cproj.SaveAs('hists/strawtubes/{}/proj_{}.pdf'.format(directory,int(fields[h]*10)))
+    cproj.Close()
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Analysis of magnetic field
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 bcan = r.TCanvas('bcan', 'bcan', 950,650)
 
@@ -203,15 +308,16 @@ bfield = r.TGraph()
 for n in range(len(fields)):
     bfield.SetPoint(n,fields[n],hists[n].Integral()+1)
 bfield.SetTitle('Number of total hits in first plane of T1 for different B-fields')
-bfield.SetMarkerStyle(24)
+bfield.SetMarkerStyle(5)
 bfield.SetMarkerSize(3)
+bfield.SetMarkerColorAlpha(r.kGreen+1,1.0)
 r.gPad.SetLogy()
 bfield.SetMaximum(4*10e10)
 bfield.SetMinimum(1)
 bfield.GetXaxis().SetTitle('Magnetic field B [T]')
 bfield.GetYaxis().SetTitle('hits/s')
-bfield.Draw()
-text.Draw()
+bfield.Draw('AP')
+#text.Draw()
 bcan.Draw()
-bcan.SaveAs('hists/strawtubes/new/hits_bfield.pdf')
+bcan.SaveAs('hists/strawtubes/{}/hits_bfield.pdf'.format(directory))
 bcan.Close()

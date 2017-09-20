@@ -1,4 +1,4 @@
-This is LuaTeX, Version 1.0.4 (TeX Live 2017)  (format=lualatex 2017.6.28)  31 AUG 2017 16:06
+This is LuaTeX, Version 1.0.4 (TeX Live 2017)  (format=lualatex 2017.6.28)  20 SEP 2017 18:01
  restricted system commands enabled.
 **presentation.tex
 (./presentation.tex
@@ -33,7 +33,7 @@ Inserting `luaotfload.aux.set_capheight' at position 3 in `luaotfload.patch_font
 '.
 Inserting `luaotfload.rewrite_fontname' at position 4 in `luaotfload.patch_font'
 .
-luaotfload | main : initialization completed in 0.572 seconds
+luaotfload | main : initialization completed in 0.633 seconds
 Babel <3.11> and hyphenation patterns for 1 language(s) loaded.
 (./header.tex
 (/home/kevin/.local/texlive/2017/texmf-dist/tex/latex/beamer/beamer.cls
@@ -1175,23 +1175,12 @@ Package: ctablestack 2015/10/01 v1.0 Catcode table stable support
 luatex-hyphen: using data file: /home/kevin/.local/texlive/2017/texmf-var/tex/ge
 neric/config/language.dat.lua
 Lua module: polyglossia 2013/05/11 1.3 Polyglossia)
-(/home/kevin/.local/texlive/2017/texmf-dist/tex/latex/polyglossia/gloss-german.
-ldf
-File: gloss-german.ldf polyglossia: module for german
+(/home/kevin/.local/texlive/2017/texmf-dist/tex/latex/polyglossia/gloss-english
+.ldf
+File: gloss-english.ldf polyglossia: module for english
+)
+Package polyglossia Info: Default language is english.
 
-hyph-de-1901.pat.txt
-Language german was not yet loaded; created with id 4
-Language german already loaded; id is 4
-hyph-de-1996.pat.txt
-Language ngerman was not yet loaded; created with id 8
-Language ngerman already loaded; id is 8
-(/home/kevin/.local/texlive/2017/texmf-dist/tex/latex/polyglossia/babelsh.def
-File: babelsh.def 2013/04/30 Babel common definitions for shorthands
- Taken verbatim from babel.def (2013/04/15 v3.9e)
-)
-Package polyglossia Info: Making " an active character on input line 79.
-)
-Package polyglossia Info: Default language is german.
 (/home/kevin/.local/texlive/2017/texmf-dist/tex/latex/mathtools/mathtools.sty
 Package: mathtools 2017/05/24 v1.19 mathematical typesetting tools
 
@@ -1632,9 +1621,9 @@ Package: forloop 2006/09/18 v3.0 For Loops for LaTeX
 Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 )))
 (./presentation.aux
-luatex-hyphen: loading patterns and exceptions for: german (\language4)
-luatex-hyphen: info: no hyphenation exceptions for this language
-Language ngerman already loaded; id is 8
+
+LaTeX Warning: Label `tab:mean' multiply defined.
+
 
 LaTeX Warning: Label `tab:mean' multiply defined.
 
@@ -1831,7 +1820,6 @@ LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  OT1/cmtt/m/n --> TU/lmtt/bx/n on input line 3.
 
-Language ngerman already loaded; id is 8
 (/home/kevin/.local/texlive/2017/texmf-dist/tex/latex/siunitx/siunitx-abbreviat
 ions.cfg
 File: siunitx-abbreviations.cfg 2017/06/13 v2.7h siunitx: Abbreviated units
@@ -1839,11 +1827,11 @@ File: siunitx-abbreviations.cfg 2017/06/13 v2.7h siunitx: Abbreviated units
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
  (./presentation.nav)
-<logos/tu.pdf, id=25, pagebox=cropbox, 355.65945pt x 62.14388pt>
+<logos/tu.pdf, id=69, pagebox=cropbox, 355.65945pt x 62.14388pt>
 File: logos/tu.pdf Graphic file (type pdf)
 <use logos/tu.pdf>
 Package luatex.def Info: logos/tu.pdf  used on input line 3. on input line 3.
-Package luatex.def Info: Requested size: 130.2732pt x 22.76271pt on input line 3
+Package luatex.def Info: Requested size: 81.42006pt x 14.22723pt on input line 3
 .
 \c__siunitx_mathsf_int=\count369
 (load luc: /home/kevin/.local/texlive/2017/texmf-var/luatex-cache/generic/fonts/
@@ -1862,163 +1850,399 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 (load luc: /home/kevin/.local/texlive/2017/texmf-var/luatex-cache/generic/fonts/
 otl/lmmono10-regular.luc)(load luc: /home/kevin/.local/texlive/2017/texmf-var/lu
 atex-cache/generic/fonts/otl/lmmono8-regular.luc)
-<CERN-logo.jpg, id=26, pagebox=cropbox, 603.25375pt x 602.25pt>
+<CERN-logo.jpg, id=70, pagebox=cropbox, 603.25375pt x 602.25pt>
 File: CERN-logo.jpg Graphic file (type jpg)
 <use CERN-logo.jpg>
 Package luatex.def Info: CERN-logo.jpg  used on input line 5. on input line 5.
-Package luatex.def Info: Requested size: 106.31102pt x 106.1305pt on input line 
-5.
-<SHiP-Full_Black_0.png, id=27, pagebox=cropbox, 106.7187pt x 142.3719pt>
+Package luatex.def Info: Requested size: 85.04752pt x 84.90256pt on input line 5
+.
+<SHiP-Full_Black_0.png, id=71, pagebox=cropbox, 106.7187pt x 142.3719pt>
 File: SHiP-Full_Black_0.png Graphic file (type png)
 <use SHiP-Full_Black_0.png>
 Package luatex.def Info: SHiP-Full_Black_0.png  used on input line 5. on input l
 ine 5.
-Package luatex.def Info: Requested size: 106.31102pt x 141.83711pt on input line
- 5.
+Package luatex.def Info: Requested size: 85.04752pt x 113.46751pt on input line 
+5.
 
-Overfull \vbox (36.56404pt too high) detected at line 5
+Overfull \vbox (1.98697pt too high) detected at line 5
  []
 
 File: logos/tu.pdf Graphic file (type pdf)
 <use logos/tu.pdf>
 Package luatex.def Info: logos/tu.pdf  used on input line 5. on input line 5.
-Package luatex.def Info: Requested size: 130.2732pt x 22.76271pt on input line 5
+Package luatex.def Info: Requested size: 81.42006pt x 14.22723pt on input line 5
 .
 [1{/home/kevin/.local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 <./logos/tu.pdf><./CERN-logo.jpg><./SHiP-Full_Black_0.png>]
 File: logos/tu.pdf Graphic file (type pdf)
 <use logos/tu.pdf>
-Package luatex.def Info: logos/tu.pdf  used on input line 17. on input line 17.
-Package luatex.def Info: Requested size: 130.2732pt x 22.76271pt on input line 1
-7.
+Package luatex.def Info: logos/tu.pdf  used on input line 18. on input line 18.
+Package luatex.def Info: Requested size: 81.42006pt x 14.22723pt on input line 1
+8.
  [2
 
-](load luc: /home/kevin/.local/texlive/2017/texmf-var/luatex-cache/generic/fonts
-/otl/lmroman5-regular.luc)
-File: logos/tu.pdf Graphic file (type pdf)
-<use logos/tu.pdf>
-Package luatex.def Info: logos/tu.pdf  used on input line 34. on input line 34.
-Package luatex.def Info: Requested size: 130.2732pt x 22.76271pt on input line 3
-4.
- [3
-
 ]
-<tpdetector.jpg, id=57, pagebox=cropbox, 694.09312pt x 361.35pt>
-File: tpdetector.jpg Graphic file (type jpg)
-<use tpdetector.jpg>
-Package luatex.def Info: tpdetector.jpg  used on input line 41. on input line 41
-.
-Package luatex.def Info: Requested size: 340.19655pt x 177.11267pt on input line
+<IP_cut.png, id=91, pagebox=cropbox, 664.4825pt x 456.70625pt>
+File: IP_cut.png Graphic file (type png)
+<use IP_cut.png>
+Package luatex.def Info: IP_cut.png  used on input line 41. on input line 41.
+Package luatex.def Info: Requested size: 212.62204pt x 146.13504pt on input line
  41.
 
-Overfull \vbox (0.19177pt too high) detected at line 41
+Overfull \hbox (5.0pt too wide) in paragraph at lines 41--41
+ [] 
  []
 
 File: logos/tu.pdf Graphic file (type pdf)
 <use logos/tu.pdf>
 Package luatex.def Info: logos/tu.pdf  used on input line 41. on input line 41.
-Package luatex.def Info: Requested size: 130.2732pt x 22.76271pt on input line 4
+Package luatex.def Info: Requested size: 81.42006pt x 14.22723pt on input line 4
 1.
-[4
+[3
 
-<./tpdetector.jpg>]
-<loop.png, id=65, pagebox=cropbox, 406.51875pt x 152.57pt>
-File: loop.png Graphic file (type png)
-<use loop.png>
-Package luatex.def Info: loop.png  used on input line 64. on input line 64.
-Package luatex.def Info: Requested size: 170.09503pt x 63.83684pt on input line 
-64.
+<./IP_cut.png>](load luc: /home/kevin/.local/texlive/2017/texmf-var/luatex-cache
+/generic/fonts/otl/lmroman5-regular.luc)
 File: logos/tu.pdf Graphic file (type pdf)
 <use logos/tu.pdf>
-Package luatex.def Info: logos/tu.pdf  used on input line 64. on input line 64.
-Package luatex.def Info: Requested size: 130.2732pt x 22.76271pt on input line 6
-4.
- [5
-
-<./loop.png>]
-<../hists/nofield/mc_pvtx_z.pdf, id=74, pagebox=cropbox, 569.12625pt x 374.39874
-pt>
-File: ../hists/nofield/mc_pvtx_z.pdf Graphic file (type pdf)
-<use ../hists/nofield/mc_pvtx_z.pdf>
-Package luatex.def Info: ../hists/nofield/mc_pvtx_z.pdf  used on input line 78. 
-on input line 78.
-Package luatex.def Info: Requested size: 212.62204pt x 139.8736pt on input line 
-78.
-
-Overfull \hbox (5.0pt too wide) in paragraph at lines 78--78
- [] 
- []
-
-<../hists/nofield/z_500k.pdf, id=75, pagebox=cropbox, 569.12625pt x 374.39874pt>
-
-File: ../hists/nofield/z_500k.pdf Graphic file (type pdf)
-<use ../hists/nofield/z_500k.pdf>
-Package luatex.def Info: ../hists/nofield/z_500k.pdf  used on input line 78. on 
-input line 78.
-Package luatex.def Info: Requested size: 212.62204pt x 139.8736pt on input line 
-78.
-
-Overfull \hbox (5.0pt too wide) in paragraph at lines 78--78
- [] 
- []
-
-File: logos/tu.pdf Graphic file (type pdf)
-<use logos/tu.pdf>
-Package luatex.def Info: logos/tu.pdf  used on input line 78. on input line 78.
-Package luatex.def Info: Requested size: 130.2732pt x 22.76271pt on input line 7
+Package luatex.def Info: logos/tu.pdf  used on input line 58. on input line 58.
+Package luatex.def Info: Requested size: 81.42006pt x 14.22723pt on input line 5
 8.
-[6
-
-<../hists/nofield/mc_pvtx_z.pdf><../hists/nofield/z_500k.pdf>]
-File: logos/tu.pdf Graphic file (type pdf)
-<use logos/tu.pdf>
-Package luatex.def Info: logos/tu.pdf  used on input line 93. on input line 93.
-Package luatex.def Info: Requested size: 130.2732pt x 22.76271pt on input line 9
-3.
- [7
+ [4
 
 ]
-<../hists/nofield/target_dist.pdf, id=187, pagebox=cropbox, 569.12625pt x 381.42
-5pt>
-File: ../hists/nofield/target_dist.pdf Graphic file (type pdf)
-<use ../hists/nofield/target_dist.pdf>
-Package luatex.def Info: ../hists/nofield/target_dist.pdf  used on input line 10
-0. on input line 100.
-Package luatex.def Info: Requested size: 276.40605pt x 185.25279pt on input line
- 100.
 File: logos/tu.pdf Graphic file (type pdf)
 <use logos/tu.pdf>
-Package luatex.def Info: logos/tu.pdf  used on input line 100. on input line 100
+Package luatex.def Info: logos/tu.pdf  used on input line 79. on input line 79.
+Package luatex.def Info: Requested size: 81.42006pt x 14.22723pt on input line 7
+9.
+ [5
+
+]
+<loop.png, id=118, pagebox=cropbox, 406.51875pt x 152.57pt>
+File: loop.png Graphic file (type png)
+<use loop.png>
+Package luatex.def Info: loop.png  used on input line 88. on input line 88.
+Package luatex.def Info: Requested size: 170.09503pt x 63.83684pt on input line 
+88.
+File: logos/tu.pdf Graphic file (type pdf)
+<use logos/tu.pdf>
+Package luatex.def Info: logos/tu.pdf  used on input line 88. on input line 88.
+Package luatex.def Info: Requested size: 81.42006pt x 14.22723pt on input line 8
+8.
+ [6
+
+<./loop.png>]
+<../hists/nofield/z_1M.pdf, id=127, pagebox=cropbox, 569.12625pt x 374.39874pt>
+File: ../hists/nofield/z_1M.pdf Graphic file (type pdf)
+<use ../hists/nofield/z_1M.pdf>
+Package luatex.def Info: ../hists/nofield/z_1M.pdf  used on input line 95. on in
+put line 95.
+Package luatex.def Info: Requested size: 276.40605pt x 181.84024pt on input line
+ 95.
+File: logos/tu.pdf Graphic file (type pdf)
+<use logos/tu.pdf>
+Package luatex.def Info: logos/tu.pdf  used on input line 95. on input line 95.
+Package luatex.def Info: Requested size: 81.42006pt x 14.22723pt on input line 9
+5.
+ [7
+
+<../hists/nofield/z_1M.pdf>]
+File: logos/tu.pdf Graphic file (type pdf)
+<use logos/tu.pdf>
+Package luatex.def Info: logos/tu.pdf  used on input line 113. on input line 113
 .
-Package luatex.def Info: Requested size: 130.2732pt x 22.76271pt on input line 1
-00.
+Package luatex.def Info: Requested size: 81.42006pt x 14.22723pt on input line 1
+13.
  [8
 
-<../hists/nofield/target_dist.pdf>]
-<../hists/nofield/allP/target_dist_amu.pdf, id=242, pagebox=cropbox, 569.12625pt
- x 381.425pt>
-File: ../hists/nofield/allP/target_dist_amu.pdf Graphic file (type pdf)
-<use ../hists/nofield/allP/target_dist_amu.pdf>
-Package luatex.def Info: ../hists/nofield/allP/target_dist_amu.pdf  used on inpu
-t line 114. on input line 114.
-Package luatex.def Info: Requested size: 212.62204pt x 142.49857pt on input line
- 114.
+]
+<../hists/nofield/old/target_dist.pdf, id=193, pagebox=cropbox, 569.12625pt x 38
+1.425pt>
+File: ../hists/nofield/old/target_dist.pdf Graphic file (type pdf)
+<use ../hists/nofield/old/target_dist.pdf>
+Package luatex.def Info: ../hists/nofield/old/target_dist.pdf  used on input lin
+e 120. on input line 120.
+Package luatex.def Info: Requested size: 318.93306pt x 213.75368pt on input line
+ 120.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 114--114
+Overfull \vbox (11.77982pt too high) detected at line 120
+ []
+
+File: logos/tu.pdf Graphic file (type pdf)
+<use logos/tu.pdf>
+Package luatex.def Info: logos/tu.pdf  used on input line 120. on input line 120
+.
+Package luatex.def Info: Requested size: 81.42006pt x 14.22723pt on input line 1
+20.
+[9
+
+<../hists/nofield/old/target_dist.pdf>](load luc: /home/kevin/.local/texlive/201
+7/texmf-var/luatex-cache/generic/fonts/otl/lmroman7-regular.luc)
+File: logos/tu.pdf Graphic file (type pdf)
+<use logos/tu.pdf>
+Package luatex.def Info: logos/tu.pdf  used on input line 149. on input line 149
+.
+Package luatex.def Info: Requested size: 81.42006pt x 14.22723pt on input line 1
+49.
+ [10
+
+]
+File: logos/tu.pdf Graphic file (type pdf)
+<use logos/tu.pdf>
+Package luatex.def Info: logos/tu.pdf  used on input line 157. on input line 157
+.
+Package luatex.def Info: Requested size: 81.42006pt x 14.22723pt on input line 1
+57.
+
+[11
+
+]
+<../hists/nofield/momcut50/target_dist.pdf, id=263, pagebox=cropbox, 569.12625pt
+ x 381.425pt>
+File: ../hists/nofield/momcut50/target_dist.pdf Graphic file (type pdf)
+<use ../hists/nofield/momcut50/target_dist.pdf>
+Package luatex.def Info: ../hists/nofield/momcut50/target_dist.pdf  used on inpu
+t line 164. on input line 164.
+Package luatex.def Info: Requested size: 276.40605pt x 185.25279pt on input line
+ 164.
+File: logos/tu.pdf Graphic file (type pdf)
+<use logos/tu.pdf>
+Package luatex.def Info: logos/tu.pdf  used on input line 164. on input line 164
+.
+Package luatex.def Info: Requested size: 81.42006pt x 14.22723pt on input line 1
+64.
+ [12
+
+<../hists/nofield/momcut50/target_dist.pdf>]
+File: logos/tu.pdf Graphic file (type pdf)
+<use logos/tu.pdf>
+Package luatex.def Info: logos/tu.pdf  used on input line 177. on input line 177
+.
+Package luatex.def Info: Requested size: 81.42006pt x 14.22723pt on input line 1
+77.
+ [13
+
+]
+File: ../hists/nofield/old/target_dist.pdf Graphic file (type pdf)
+<use ../hists/nofield/old/target_dist.pdf>
+Package luatex.def Info: ../hists/nofield/old/target_dist.pdf  used on input lin
+e 189. on input line 189.
+Package luatex.def Info: Requested size: 331.68985pt x 222.30336pt on input line
+ 189.
+
+Overfull \vbox (20.3295pt too high) detected at line 189
+ []
+
+File: logos/tu.pdf Graphic file (type pdf)
+<use logos/tu.pdf>
+Package luatex.def Info: logos/tu.pdf  used on input line 189. on input line 189
+.
+Package luatex.def Info: Requested size: 81.42006pt x 14.22723pt on input line 1
+89.
+[14
+
+]
+<../hists/nofield/new/target_dist.pdf, id=331, pagebox=cropbox, 569.12625pt x 38
+1.425pt>
+File: ../hists/nofield/new/target_dist.pdf Graphic file (type pdf)
+<use ../hists/nofield/new/target_dist.pdf>
+Package luatex.def Info: ../hists/nofield/new/target_dist.pdf  used on input lin
+e 200. on input line 200.
+Package luatex.def Info: Requested size: 331.68985pt x 222.30336pt on input line
+ 200.
+
+Overfull \vbox (20.3295pt too high) detected at line 200
+ []
+
+File: logos/tu.pdf Graphic file (type pdf)
+<use logos/tu.pdf>
+Package luatex.def Info: logos/tu.pdf  used on input line 200. on input line 200
+.
+Package luatex.def Info: Requested size: 81.42006pt x 14.22723pt on input line 2
+00.
+[15
+
+<../hists/nofield/new/target_dist.pdf>]
+<../hists/nofield/old/gauss_fit.pdf, id=386, pagebox=cropbox, 569.12625pt x 381.
+425pt>
+File: ../hists/nofield/old/gauss_fit.pdf Graphic file (type pdf)
+<use ../hists/nofield/old/gauss_fit.pdf>
+Package luatex.def Info: ../hists/nofield/old/gauss_fit.pdf  used on input line 
+211. on input line 211.
+Package luatex.def Info: Requested size: 331.68985pt x 222.30336pt on input line
+ 211.
+
+Overfull \vbox (20.3295pt too high) detected at line 211
+ []
+
+File: logos/tu.pdf Graphic file (type pdf)
+<use logos/tu.pdf>
+Package luatex.def Info: logos/tu.pdf  used on input line 211. on input line 211
+.
+Package luatex.def Info: Requested size: 81.42006pt x 14.22723pt on input line 2
+11.
+[16
+
+<../hists/nofield/old/gauss_fit.pdf>]
+<../hists/nofield/new/gauss_fit.pdf, id=440, pagebox=cropbox, 569.12625pt x 381.
+425pt>
+File: ../hists/nofield/new/gauss_fit.pdf Graphic file (type pdf)
+<use ../hists/nofield/new/gauss_fit.pdf>
+Package luatex.def Info: ../hists/nofield/new/gauss_fit.pdf  used on input line 
+222. on input line 222.
+Package luatex.def Info: Requested size: 331.68985pt x 222.30336pt on input line
+ 222.
+
+Overfull \vbox (20.3295pt too high) detected at line 222
+ []
+
+File: logos/tu.pdf Graphic file (type pdf)
+<use logos/tu.pdf>
+Package luatex.def Info: logos/tu.pdf  used on input line 222. on input line 222
+.
+Package luatex.def Info: Requested size: 81.42006pt x 14.22723pt on input line 2
+22.
+[17
+
+<../hists/nofield/new/gauss_fit.pdf>]
+<../hists/nofield/comp/gauss_comparison_x-.pdf, id=494, pagebox=cropbox, 462.527
+98pt x 346.89601pt>
+File: ../hists/nofield/comp/gauss_comparison_x-.pdf Graphic file (type pdf)
+<use ../hists/nofield/comp/gauss_comparison_x-.pdf>
+Package luatex.def Info: ../hists/nofield/comp/gauss_comparison_x-.pdf  used on 
+input line 236. on input line 236.
+Package luatex.def Info: Requested size: 212.62204pt x 159.46823pt on input line
+ 236.
+
+Overfull \hbox (5.0pt too wide) in paragraph at lines 236--236
  [] 
  []
 
-<../hists/nofield/allP/target_dist_mu.pdf, id=243, pagebox=cropbox, 569.12625pt 
-x 381.425pt>
-File: ../hists/nofield/allP/target_dist_mu.pdf Graphic file (type pdf)
-<use ../hists/nofield/allP/target_dist_mu.pdf>
-Package luatex.def Info: ../hists/nofield/allP/target_dist_mu.pdf  used on input
- line 114. on input line 114.
-Package luatex.def Info: Requested size: 212.62204pt x 142.49857pt on input line
- 114.
+<../hists/nofield/comp/gauss_comparison_x+.pdf, id=495, pagebox=cropbox, 462.527
+98pt x 346.89601pt>
+File: ../hists/nofield/comp/gauss_comparison_x+.pdf Graphic file (type pdf)
+<use ../hists/nofield/comp/gauss_comparison_x+.pdf>
+Package luatex.def Info: ../hists/nofield/comp/gauss_comparison_x+.pdf  used on 
+input line 236. on input line 236.
+Package luatex.def Info: Requested size: 212.62204pt x 159.46823pt on input line
+ 236.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 114--114
+Overfull \hbox (5.0pt too wide) in paragraph at lines 236--236
+ [] 
+ []
+
+File: logos/tu.pdf Graphic file (type pdf)
+<use logos/tu.pdf>
+Package luatex.def Info: logos/tu.pdf  used on input line 236. on input line 236
+.
+Package luatex.def Info: Requested size: 81.42006pt x 14.22723pt on input line 2
+36.
+[18
+
+<../hists/nofield/comp/gauss_comparison_x-.pdf><../hists/nofield/comp/gauss_comp
+arison_x+.pdf>]
+<../hists/nofield/comp/gauss_comparison_y-.pdf, id=583, pagebox=cropbox, 462.527
+98pt x 346.89601pt>
+File: ../hists/nofield/comp/gauss_comparison_y-.pdf Graphic file (type pdf)
+<use ../hists/nofield/comp/gauss_comparison_y-.pdf>
+Package luatex.def Info: ../hists/nofield/comp/gauss_comparison_y-.pdf  used on 
+input line 250. on input line 250.
+Package luatex.def Info: Requested size: 212.62204pt x 159.46823pt on input line
+ 250.
+
+Overfull \hbox (5.0pt too wide) in paragraph at lines 250--250
+ [] 
+ []
+
+<../hists/nofield/comp/gauss_comparison_y+.pdf, id=584, pagebox=cropbox, 462.527
+98pt x 346.89601pt>
+File: ../hists/nofield/comp/gauss_comparison_y+.pdf Graphic file (type pdf)
+<use ../hists/nofield/comp/gauss_comparison_y+.pdf>
+Package luatex.def Info: ../hists/nofield/comp/gauss_comparison_y+.pdf  used on 
+input line 250. on input line 250.
+Package luatex.def Info: Requested size: 212.62204pt x 159.46823pt on input line
+ 250.
+
+Overfull \hbox (5.0pt too wide) in paragraph at lines 250--250
+ [] 
+ []
+
+File: logos/tu.pdf Graphic file (type pdf)
+<use logos/tu.pdf>
+Package luatex.def Info: logos/tu.pdf  used on input line 250. on input line 250
+.
+Package luatex.def Info: Requested size: 81.42006pt x 14.22723pt on input line 2
+50.
+[19
+
+<../hists/nofield/comp/gauss_comparison_y-.pdf><../hists/nofield/comp/gauss_comp
+arison_y+.pdf>]
+<../hists/nofield/old/mc_target_dist.pdf, id=671, pagebox=cropbox, 569.12625pt x
+ 381.425pt>
+File: ../hists/nofield/old/mc_target_dist.pdf Graphic file (type pdf)
+<use ../hists/nofield/old/mc_target_dist.pdf>
+Package luatex.def Info: ../hists/nofield/old/mc_target_dist.pdf  used on input 
+line 261. on input line 261.
+Package luatex.def Info: Requested size: 331.68985pt x 222.30336pt on input line
+ 261.
+
+Overfull \vbox (20.3295pt too high) detected at line 261
+ []
+
+File: logos/tu.pdf Graphic file (type pdf)
+<use logos/tu.pdf>
+Package luatex.def Info: logos/tu.pdf  used on input line 261. on input line 261
+.
+Package luatex.def Info: Requested size: 81.42006pt x 14.22723pt on input line 2
+61.
+[20
+
+<../hists/nofield/old/mc_target_dist.pdf>]
+<../hists/nofield/new/mc_target_dist.pdf, id=725, pagebox=cropbox, 569.12625pt x
+ 381.425pt>
+File: ../hists/nofield/new/mc_target_dist.pdf Graphic file (type pdf)
+<use ../hists/nofield/new/mc_target_dist.pdf>
+Package luatex.def Info: ../hists/nofield/new/mc_target_dist.pdf  used on input 
+line 272. on input line 272.
+Package luatex.def Info: Requested size: 331.68985pt x 222.30336pt on input line
+ 272.
+
+Overfull \vbox (20.3295pt too high) detected at line 272
+ []
+
+File: logos/tu.pdf Graphic file (type pdf)
+<use logos/tu.pdf>
+Package luatex.def Info: logos/tu.pdf  used on input line 272. on input line 272
+.
+Package luatex.def Info: Requested size: 81.42006pt x 14.22723pt on input line 2
+72.
+[21
+
+<../hists/nofield/new/mc_target_dist.pdf>]
+<../hists/nofield/new/10mT/target_dist_amu.pdf, id=780, pagebox=cropbox, 569.126
+25pt x 381.425pt>
+File: ../hists/nofield/new/10mT/target_dist_amu.pdf Graphic file (type pdf)
+<use ../hists/nofield/new/10mT/target_dist_amu.pdf>
+Package luatex.def Info: ../hists/nofield/new/10mT/target_dist_amu.pdf  used on 
+input line 286. on input line 286.
+Package luatex.def Info: Requested size: 212.62204pt x 142.49857pt on input line
+ 286.
+
+Overfull \hbox (5.0pt too wide) in paragraph at lines 286--286
+ [] 
+ []
+
+<../hists/nofield/new/10mT/target_dist_mu.pdf, id=781, pagebox=cropbox, 569.1262
+5pt x 381.425pt>
+File: ../hists/nofield/new/10mT/target_dist_mu.pdf Graphic file (type pdf)
+<use ../hists/nofield/new/10mT/target_dist_mu.pdf>
+Package luatex.def Info: ../hists/nofield/new/10mT/target_dist_mu.pdf  used on i
+nput line 286. on input line 286.
+Package luatex.def Info: Requested size: 212.62204pt x 142.49857pt on input line
+ 286.
+
+Overfull \hbox (5.0pt too wide) in paragraph at lines 286--286
  [] 
  []
 
@@ -2027,241 +2251,397 @@ otl/lmroman12-regular.luc)(load luc: /home/kevin/.local/texlive/2017/texmf-var/l
 uatex-cache/generic/fonts/otl/lmmono12-regular.luc)
 File: logos/tu.pdf Graphic file (type pdf)
 <use logos/tu.pdf>
-Package luatex.def Info: logos/tu.pdf  used on input line 114. on input line 114
+Package luatex.def Info: logos/tu.pdf  used on input line 286. on input line 286
 .
-Package luatex.def Info: Requested size: 130.2732pt x 22.76271pt on input line 1
-14.
- [9
+Package luatex.def Info: Requested size: 81.42006pt x 14.22723pt on input line 2
+86.
+ [22
 
-<../hists/nofield/allP/target_dist_amu.pdf><../hists/nofield/allP/target_dist_mu
-.pdf>]
-<../hists/nofield/mom_reco_tracks.pdf, id=344, pagebox=cropbox, 569.12625pt x 37
-4.39874pt>
+<../hists/nofield/new/10mT/target_dist_amu.pdf><../hists/nofield/new/10mT/target
+_dist_mu.pdf>]
+<../hists/nofield/comp/gauss_comparison_x-_10mT.pdf, id=883, pagebox=cropbox, 46
+2.52798pt x 346.89601pt>
+File: ../hists/nofield/comp/gauss_comparison_x-_10mT.pdf Graphic file (type pdf)
+
+<use ../hists/nofield/comp/gauss_comparison_x-_10mT.pdf>
+Package luatex.def Info: ../hists/nofield/comp/gauss_comparison_x-_10mT.pdf  use
+d on input line 300. on input line 300.
+Package luatex.def Info: Requested size: 212.62204pt x 159.46823pt on input line
+ 300.
+
+Overfull \hbox (5.0pt too wide) in paragraph at lines 300--300
+ [] 
+ []
+
+<../hists/nofield/comp/gauss_comparison_x+_10mT.pdf, id=884, pagebox=cropbox, 46
+2.52798pt x 346.89601pt>
+File: ../hists/nofield/comp/gauss_comparison_x+_10mT.pdf Graphic file (type pdf)
+
+<use ../hists/nofield/comp/gauss_comparison_x+_10mT.pdf>
+Package luatex.def Info: ../hists/nofield/comp/gauss_comparison_x+_10mT.pdf  use
+d on input line 300. on input line 300.
+Package luatex.def Info: Requested size: 212.62204pt x 159.46823pt on input line
+ 300.
+
+Overfull \hbox (5.0pt too wide) in paragraph at lines 300--300
+ [] 
+ []
+
+File: logos/tu.pdf Graphic file (type pdf)
+<use logos/tu.pdf>
+Package luatex.def Info: logos/tu.pdf  used on input line 300. on input line 300
+.
+Package luatex.def Info: Requested size: 81.42006pt x 14.22723pt on input line 3
+00.
+[23
+
+<../hists/nofield/comp/gauss_comparison_x-_10mT.pdf><../hists/nofield/comp/gauss
+_comparison_x+_10mT.pdf>]
+<../hists/nofield/comp/gauss_comparison_y-_10mT.pdf, id=975, pagebox=cropbox, 46
+2.52798pt x 346.89601pt>
+File: ../hists/nofield/comp/gauss_comparison_y-_10mT.pdf Graphic file (type pdf)
+
+<use ../hists/nofield/comp/gauss_comparison_y-_10mT.pdf>
+Package luatex.def Info: ../hists/nofield/comp/gauss_comparison_y-_10mT.pdf  use
+d on input line 314. on input line 314.
+Package luatex.def Info: Requested size: 212.62204pt x 159.46823pt on input line
+ 314.
+
+Overfull \hbox (5.0pt too wide) in paragraph at lines 314--314
+ [] 
+ []
+
+<../hists/nofield/comp/gauss_comparison_y+_10mT.pdf, id=976, pagebox=cropbox, 46
+2.52798pt x 346.89601pt>
+File: ../hists/nofield/comp/gauss_comparison_y+_10mT.pdf Graphic file (type pdf)
+
+<use ../hists/nofield/comp/gauss_comparison_y+_10mT.pdf>
+Package luatex.def Info: ../hists/nofield/comp/gauss_comparison_y+_10mT.pdf  use
+d on input line 314. on input line 314.
+Package luatex.def Info: Requested size: 212.62204pt x 159.46823pt on input line
+ 314.
+
+Overfull \hbox (5.0pt too wide) in paragraph at lines 314--314
+ [] 
+ []
+
+File: logos/tu.pdf Graphic file (type pdf)
+<use logos/tu.pdf>
+Package luatex.def Info: logos/tu.pdf  used on input line 314. on input line 314
+.
+Package luatex.def Info: Requested size: 81.42006pt x 14.22723pt on input line 3
+14.
+[24
+
+<../hists/nofield/comp/gauss_comparison_y-_10mT.pdf><../hists/nofield/comp/gauss
+_comparison_y+_10mT.pdf>]
+warning  (pdf backend): ignoring duplicate destination with the name 'tab:mean'
+File: logos/tu.pdf Graphic file (type pdf)
+<use logos/tu.pdf>
+Package luatex.def Info: logos/tu.pdf  used on input line 341. on input line 341
+.
+Package luatex.def Info: Requested size: 81.42006pt x 14.22723pt on input line 3
+41.
+[25
+
+]
+File: logos/tu.pdf Graphic file (type pdf)
+<use logos/tu.pdf>
+Package luatex.def Info: logos/tu.pdf  used on input line 371. on input line 371
+.
+Package luatex.def Info: Requested size: 81.42006pt x 14.22723pt on input line 3
+71.
+ [26
+
+]
+File: logos/tu.pdf Graphic file (type pdf)
+<use logos/tu.pdf>
+Package luatex.def Info: logos/tu.pdf  used on input line 383. on input line 383
+.
+Package luatex.def Info: Requested size: 81.42006pt x 14.22723pt on input line 3
+83.
+ [27
+
+]
+Overfull \hbox (7.08372pt too wide) in paragraph at lines 393--393
+\TU/lmtt/m/n/10.95 /eos/ship/data/Mbias/pythia8_Geant4-withCharm_onlyMuons_4mag
+Target.root\TU/FiraSansLight(0)/m/n/10.95 .  
+ []
+
+File: logos/tu.pdf Graphic file (type pdf)
+<use logos/tu.pdf>
+Package luatex.def Info: logos/tu.pdf  used on input line 393. on input line 393
+.
+Package luatex.def Info: Requested size: 81.42006pt x 14.22723pt on input line 3
+93.
+[28
+
+]
+<../hists/strawtubes/all/z_T1.pdf, id=1096, pagebox=cropbox, 569.12625pt x 374.3
+9874pt>
+File: ../hists/strawtubes/all/z_T1.pdf Graphic file (type pdf)
+<use ../hists/strawtubes/all/z_T1.pdf>
+Package luatex.def Info: ../hists/strawtubes/all/z_T1.pdf  used on input line 40
+0. on input line 400.
+Package luatex.def Info: Requested size: 331.68985pt x 218.2083pt on input line 
+400.
+
+Overfull \vbox (16.23444pt too high) detected at line 400
+ []
+
+File: logos/tu.pdf Graphic file (type pdf)
+<use logos/tu.pdf>
+Package luatex.def Info: logos/tu.pdf  used on input line 400. on input line 400
+.
+Package luatex.def Info: Requested size: 81.42006pt x 14.22723pt on input line 4
+00.
+[29
+
+<../hists/strawtubes/all/z_T1.pdf>]
+<../hists/strawtubes/all/xy_0.pdf, id=1150, pagebox=cropbox, 569.12625pt x 374.3
+9874pt>
+File: ../hists/strawtubes/all/xy_0.pdf Graphic file (type pdf)
+<use ../hists/strawtubes/all/xy_0.pdf>
+Package luatex.def Info: ../hists/strawtubes/all/xy_0.pdf  used on input line 40
+7. on input line 407.
+Package luatex.def Info: Requested size: 331.68985pt x 218.2083pt on input line 
+407.
+
+Overfull \vbox (16.23444pt too high) detected at line 407
+ []
+
+File: logos/tu.pdf Graphic file (type pdf)
+<use logos/tu.pdf>
+Package luatex.def Info: logos/tu.pdf  used on input line 407. on input line 407
+.
+Package luatex.def Info: Requested size: 81.42006pt x 14.22723pt on input line 4
+07.
+[30
+
+<../hists/strawtubes/all/xy_0.pdf>]
+<../hists/strawtubes/all/proj_0.pdf, id=1204, pagebox=cropbox, 569.12625pt x 186
+.6975pt>
+File: ../hists/strawtubes/all/proj_0.pdf Graphic file (type pdf)
+<use ../hists/strawtubes/all/proj_0.pdf>
+Package luatex.def Info: ../hists/strawtubes/all/proj_0.pdf  used on input line 
+416. on input line 416.
+Package luatex.def Info: Requested size: 382.71707pt x 125.55386pt on input line
+ 416.
+File: logos/tu.pdf Graphic file (type pdf)
+<use logos/tu.pdf>
+Package luatex.def Info: logos/tu.pdf  used on input line 416. on input line 416
+.
+Package luatex.def Info: Requested size: 81.42006pt x 14.22723pt on input line 4
+16.
+ [31
+
+<../hists/strawtubes/all/proj_0.pdf>]
+<../hists/strawtubes/all/hits_bfield.pdf, id=1260, pagebox=cropbox, 569.12625pt 
+x 374.39874pt>
+File: ../hists/strawtubes/all/hits_bfield.pdf Graphic file (type pdf)
+<use ../hists/strawtubes/all/hits_bfield.pdf>
+Package luatex.def Info: ../hists/strawtubes/all/hits_bfield.pdf  used on input 
+line 423. on input line 423.
+Package luatex.def Info: Requested size: 331.68985pt x 218.2083pt on input line 
+423.
+
+Overfull \vbox (16.23444pt too high) detected at line 423
+ []
+
+File: logos/tu.pdf Graphic file (type pdf)
+<use logos/tu.pdf>
+Package luatex.def Info: logos/tu.pdf  used on input line 423. on input line 423
+.
+Package luatex.def Info: Requested size: 81.42006pt x 14.22723pt on input line 4
+23.
+[32
+
+<../hists/strawtubes/all/hits_bfield.pdf>]
+<../hists/strawtubes/all/pdg_T1.pdf, id=1314, pagebox=cropbox, 569.12625pt x 374
+.39874pt>
+File: ../hists/strawtubes/all/pdg_T1.pdf Graphic file (type pdf)
+<use ../hists/strawtubes/all/pdg_T1.pdf>
+Package luatex.def Info: ../hists/strawtubes/all/pdg_T1.pdf  used on input line 
+430. on input line 430.
+Package luatex.def Info: Requested size: 276.40605pt x 181.84024pt on input line
+ 430.
+File: logos/tu.pdf Graphic file (type pdf)
+<use logos/tu.pdf>
+Package luatex.def Info: logos/tu.pdf  used on input line 430. on input line 430
+.
+Package luatex.def Info: Requested size: 81.42006pt x 14.22723pt on input line 4
+30.
+ [33
+
+<../hists/strawtubes/all/pdg_T1.pdf>]
+Overfull \hbox (0.1314pt too wide) detected at line 456
+ 
+ []
+
+
+Overfull \hbox (0.1314pt too wide) detected at line 456
+ 
+ []
+
+
+Overfull \hbox (0.1314pt too wide) detected at line 456
+ 
+ []
+
+
+Overfull \hbox (0.1314pt too wide) detected at line 456
+ 
+ []
+
+
+Overfull \hbox (0.1314pt too wide) detected at line 456
+ 
+ []
+
+
+Overfull \hbox (0.1314pt too wide) detected at line 456
+ 
+ []
+
+
+Overfull \hbox (0.1314pt too wide) detected at line 456
+ 
+ []
+
+
+warning  (pdf backend): ignoring duplicate destination with the name 'tab:mean'
+File: logos/tu.pdf Graphic file (type pdf)
+<use logos/tu.pdf>
+Package luatex.def Info: logos/tu.pdf  used on input line 456. on input line 456
+.
+Package luatex.def Info: Requested size: 81.42006pt x 14.22723pt on input line 4
+56.
+[34
+
+]
+File: logos/tu.pdf Graphic file (type pdf)
+<use logos/tu.pdf>
+Package luatex.def Info: logos/tu.pdf  used on input line 473. on input line 473
+.
+Package luatex.def Info: Requested size: 81.42006pt x 14.22723pt on input line 4
+73.
+ [35
+
+]
+File: logos/tu.pdf Graphic file (type pdf)
+<use logos/tu.pdf>
+Package luatex.def Info: logos/tu.pdf  used on input line 489. on input line 489
+.
+Package luatex.def Info: Requested size: 81.42006pt x 14.22723pt on input line 4
+89.
+ [36
+
+]
+File: logos/tu.pdf Graphic file (type pdf)
+<use logos/tu.pdf>
+Package luatex.def Info: logos/tu.pdf  used on input line 498. on input line 498
+.
+Package luatex.def Info: Requested size: 81.42006pt x 14.22723pt on input line 4
+98.
+ [37
+
+]
+File: logos/tu.pdf Graphic file (type pdf)
+<use logos/tu.pdf>
+Package luatex.def Info: logos/tu.pdf  used on input line 503. on input line 503
+.
+Package luatex.def Info: Requested size: 81.42006pt x 14.22723pt on input line 5
+03.
+ [38
+
+]
+<../hists/nofield/mom_reco_tracks.pdf, id=1401, pagebox=cropbox, 569.12625pt x 3
+74.39874pt>
 File: ../hists/nofield/mom_reco_tracks.pdf Graphic file (type pdf)
 <use ../hists/nofield/mom_reco_tracks.pdf>
 Package luatex.def Info: ../hists/nofield/mom_reco_tracks.pdf  used on input lin
-e 121. on input line 121.
+e 512. on input line 512.
 Package luatex.def Info: Requested size: 276.40605pt x 181.84024pt on input line
- 121.
-
-Overfull \vbox (4.91934pt too high) detected at line 121
- []
-
+ 512.
 File: logos/tu.pdf Graphic file (type pdf)
 <use logos/tu.pdf>
-Package luatex.def Info: logos/tu.pdf  used on input line 121. on input line 121
+Package luatex.def Info: logos/tu.pdf  used on input line 512. on input line 512
 .
-Package luatex.def Info: Requested size: 130.2732pt x 22.76271pt on input line 1
-21.
-[10
+Package luatex.def Info: Requested size: 81.42006pt x 14.22723pt on input line 5
+12.
+ [39
 
 <../hists/nofield/mom_reco_tracks.pdf>]
-<../hists/nofield/P/target_dist_amu.pdf, id=398, pagebox=cropbox, 569.12625pt x 
-381.425pt>
+<../hists/nofield/P/target_dist_amu.pdf, id=1453, pagebox=cropbox, 569.12625pt x
+ 381.425pt>
 File: ../hists/nofield/P/target_dist_amu.pdf Graphic file (type pdf)
 <use ../hists/nofield/P/target_dist_amu.pdf>
 Package luatex.def Info: ../hists/nofield/P/target_dist_amu.pdf  used on input l
-ine 135. on input line 135.
+ine 526. on input line 526.
 Package luatex.def Info: Requested size: 212.62204pt x 142.49857pt on input line
- 135.
+ 526.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 135--135
+Overfull \hbox (5.0pt too wide) in paragraph at lines 526--526
  [] 
  []
 
-<../hists/nofield/P/target_dist_mu.pdf, id=399, pagebox=cropbox, 569.12625pt x 3
-81.425pt>
+<../hists/nofield/P/target_dist_mu.pdf, id=1454, pagebox=cropbox, 569.12625pt x 
+381.425pt>
 File: ../hists/nofield/P/target_dist_mu.pdf Graphic file (type pdf)
 <use ../hists/nofield/P/target_dist_mu.pdf>
 Package luatex.def Info: ../hists/nofield/P/target_dist_mu.pdf  used on input li
-ne 135. on input line 135.
+ne 526. on input line 526.
 Package luatex.def Info: Requested size: 212.62204pt x 142.49857pt on input line
- 135.
+ 526.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 135--135
+Overfull \hbox (5.0pt too wide) in paragraph at lines 526--526
  [] 
  []
 
 File: logos/tu.pdf Graphic file (type pdf)
 <use logos/tu.pdf>
-Package luatex.def Info: logos/tu.pdf  used on input line 135. on input line 135
+Package luatex.def Info: logos/tu.pdf  used on input line 526. on input line 526
 .
-Package luatex.def Info: Requested size: 130.2732pt x 22.76271pt on input line 1
-35.
-[11
+Package luatex.def Info: Requested size: 81.42006pt x 14.22723pt on input line 5
+26.
+[40
 
 <../hists/nofield/P/target_dist_amu.pdf><../hists/nofield/P/target_dist_mu.pdf>]
-<../hists/nofield/p/target_dist_amu.pdf, id=501, pagebox=cropbox, 569.12625pt x 
-381.425pt>
+<../hists/nofield/p/target_dist_amu.pdf, id=1552, pagebox=cropbox, 569.12625pt x
+ 381.425pt>
 File: ../hists/nofield/p/target_dist_amu.pdf Graphic file (type pdf)
 <use ../hists/nofield/p/target_dist_amu.pdf>
 Package luatex.def Info: ../hists/nofield/p/target_dist_amu.pdf  used on input l
-ine 149. on input line 149.
+ine 540. on input line 540.
 Package luatex.def Info: Requested size: 212.62204pt x 142.49857pt on input line
- 149.
+ 540.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 149--149
+Overfull \hbox (5.0pt too wide) in paragraph at lines 540--540
  [] 
  []
 
-<../hists/nofield/p/target_dist_mu.pdf, id=502, pagebox=cropbox, 569.12625pt x 3
-81.425pt>
+<../hists/nofield/p/target_dist_mu.pdf, id=1553, pagebox=cropbox, 569.12625pt x 
+381.425pt>
 File: ../hists/nofield/p/target_dist_mu.pdf Graphic file (type pdf)
 <use ../hists/nofield/p/target_dist_mu.pdf>
 Package luatex.def Info: ../hists/nofield/p/target_dist_mu.pdf  used on input li
-ne 149. on input line 149.
+ne 540. on input line 540.
 Package luatex.def Info: Requested size: 212.62204pt x 142.49857pt on input line
- 149.
+ 540.
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 149--149
+Overfull \hbox (5.0pt too wide) in paragraph at lines 540--540
  [] 
  []
 
 File: logos/tu.pdf Graphic file (type pdf)
 <use logos/tu.pdf>
-Package luatex.def Info: logos/tu.pdf  used on input line 149. on input line 149
+Package luatex.def Info: logos/tu.pdf  used on input line 540. on input line 540
 .
-Package luatex.def Info: Requested size: 130.2732pt x 22.76271pt on input line 1
-49.
-[12
+Package luatex.def Info: Requested size: 81.42006pt x 14.22723pt on input line 5
+40.
+[41
 
-<../hists/nofield/p/target_dist_amu.pdf><../hists/nofield/p/target_dist_mu.pdf>](load luc: /home/kevin/.local/texlive/2017/texmf-var/luatex-cache/generic/fonts/otl/lmroman7-regular.luc)
-File: logos/tu.pdf Graphic file (type pdf)
-<use logos/tu.pdf>
-Package luatex.def Info: logos/tu.pdf  used on input line 177. on input line 177
-.
-Package luatex.def Info: Requested size: 130.2732pt x 22.76271pt on input line 1
-77.
- [13
-
-]
-<../hists/nofield/1mT/target_dist_amu.pdf, id=610, pagebox=cropbox, 569.12625pt 
-x 381.425pt>
-File: ../hists/nofield/1mT/target_dist_amu.pdf Graphic file (type pdf)
-<use ../hists/nofield/1mT/target_dist_amu.pdf>
-Package luatex.def Info: ../hists/nofield/1mT/target_dist_amu.pdf  used on input
- line 191. on input line 191.
-Package luatex.def Info: Requested size: 212.62204pt x 142.49857pt on input line
- 191.
-
-Overfull \hbox (5.0pt too wide) in paragraph at lines 191--191
- [] 
- []
-
-<../hists/nofield/1mT/target_dist_mu.pdf, id=611, pagebox=cropbox, 569.12625pt x
- 381.425pt>
-File: ../hists/nofield/1mT/target_dist_mu.pdf Graphic file (type pdf)
-<use ../hists/nofield/1mT/target_dist_mu.pdf>
-Package luatex.def Info: ../hists/nofield/1mT/target_dist_mu.pdf  used on input 
-line 191. on input line 191.
-Package luatex.def Info: Requested size: 212.62204pt x 142.49857pt on input line
- 191.
-
-Overfull \hbox (5.0pt too wide) in paragraph at lines 191--191
- [] 
- []
-
-File: logos/tu.pdf Graphic file (type pdf)
-<use logos/tu.pdf>
-Package luatex.def Info: logos/tu.pdf  used on input line 191. on input line 191
-.
-Package luatex.def Info: Requested size: 130.2732pt x 22.76271pt on input line 1
-91.
-[14
-
-<../hists/nofield/1mT/target_dist_amu.pdf><../hists/nofield/1mT/target_dist_mu.p
-df>]
-warning  (pdf backend): ignoring duplicate destination with the name 'tab:mean'
-
-Overfull \vbox (2.3181pt too high) detected at line 218
- []
-
-File: logos/tu.pdf Graphic file (type pdf)
-<use logos/tu.pdf>
-Package luatex.def Info: logos/tu.pdf  used on input line 218. on input line 218
-.
-Package luatex.def Info: Requested size: 130.2732pt x 22.76271pt on input line 2
-18.
-[15
-
-]
-<../hists/nofield/p/mc_target_dist_mu.pdf, id=719, pagebox=cropbox, 569.12625pt 
-x 381.425pt>
-File: ../hists/nofield/p/mc_target_dist_mu.pdf Graphic file (type pdf)
-<use ../hists/nofield/p/mc_target_dist_mu.pdf>
-Package luatex.def Info: ../hists/nofield/p/mc_target_dist_mu.pdf  used on input
- line 229. on input line 229.
-Package luatex.def Info: Requested size: 276.40605pt x 185.25279pt on input line
- 229.
-File: logos/tu.pdf Graphic file (type pdf)
-<use logos/tu.pdf>
-Package luatex.def Info: logos/tu.pdf  used on input line 229. on input line 229
-.
-Package luatex.def Info: Requested size: 130.2732pt x 22.76271pt on input line 2
-29.
- [16
-
-<../hists/nofield/p/mc_target_dist_mu.pdf>]
-<../hists/nofield/p/mc_target_dist_amu.pdf, id=773, pagebox=cropbox, 569.12625pt
- x 381.425pt>
-File: ../hists/nofield/p/mc_target_dist_amu.pdf Graphic file (type pdf)
-<use ../hists/nofield/p/mc_target_dist_amu.pdf>
-Package luatex.def Info: ../hists/nofield/p/mc_target_dist_amu.pdf  used on inpu
-t line 238. on input line 238.
-Package luatex.def Info: Requested size: 276.40605pt x 185.25279pt on input line
- 238.
-File: logos/tu.pdf Graphic file (type pdf)
-<use logos/tu.pdf>
-Package luatex.def Info: logos/tu.pdf  used on input line 238. on input line 238
-.
-Package luatex.def Info: Requested size: 130.2732pt x 22.76271pt on input line 2
-38.
- [17
-
-<../hists/nofield/p/mc_target_dist_amu.pdf>]
-<../hists/nofield/allP/mc_pdg.pdf, id=828, pagebox=cropbox, 569.12625pt x 374.39
-874pt>
-File: ../hists/nofield/allP/mc_pdg.pdf Graphic file (type pdf)
-<use ../hists/nofield/allP/mc_pdg.pdf>
-Package luatex.def Info: ../hists/nofield/allP/mc_pdg.pdf  used on input line 24
-5. on input line 245.
-Package luatex.def Info: Requested size: 276.40605pt x 181.84024pt on input line
- 245.
-File: logos/tu.pdf Graphic file (type pdf)
-<use logos/tu.pdf>
-Package luatex.def Info: logos/tu.pdf  used on input line 245. on input line 245
-.
-Package luatex.def Info: Requested size: 130.2732pt x 22.76271pt on input line 2
-45.
- [18
-
-<../hists/nofield/allP/mc_pdg.pdf>]
-<../hists/nofield/allP/reco_pdg.pdf, id=882, pagebox=cropbox, 569.12625pt x 374.
-39874pt>
-File: ../hists/nofield/allP/reco_pdg.pdf Graphic file (type pdf)
-<use ../hists/nofield/allP/reco_pdg.pdf>
-Package luatex.def Info: ../hists/nofield/allP/reco_pdg.pdf  used on input line 
-252. on input line 252.
-Package luatex.def Info: Requested size: 276.40605pt x 181.84024pt on input line
- 252.
-File: logos/tu.pdf Graphic file (type pdf)
-<use logos/tu.pdf>
-Package luatex.def Info: logos/tu.pdf  used on input line 252. on input line 252
-.
-Package luatex.def Info: Requested size: 130.2732pt x 22.76271pt on input line 2
-52.
- [19
-
-<../hists/nofield/allP/reco_pdg.pdf>]
-File: logos/tu.pdf Graphic file (type pdf)
-<use logos/tu.pdf>
-Package luatex.def Info: logos/tu.pdf  used on input line 262. on input line 262
-.
-Package luatex.def Info: Requested size: 130.2732pt x 22.76271pt on input line 2
-62.
- [20
-
-]
+<../hists/nofield/p/target_dist_amu.pdf><../hists/nofield/p/target_dist_mu.pdf>]
 \tf@nav=\write6
 
 \openout6 = presentation.nav
@@ -2271,14 +2651,13 @@ Package luatex.def Info: Requested size: 130.2732pt x 22.76271pt on input line 2
 \tf@snm=\write8
 
 \openout8 = presentation.snm
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 264.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 264.
- (./presentation.aux
-Language ngerman already loaded; id is 8)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 264.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 264.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 542.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 542.
+ (./presentation.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 542.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 542.
 Package rerunfilecheck Info: File `presentation.out' has not changed.
-(rerunfilecheck)             Checksum: 81CE2E3CECAAE52B5853D1993FBD6656;150.
+(rerunfilecheck)             Checksum: 2F571F0AF97B58C5622F806402460680;669.
 
 
 LaTeX Warning: There were multiply-defined labels.
@@ -2286,15 +2665,15 @@ LaTeX Warning: There were multiply-defined labels.
 )
 
 Here is how much of LuaTeX's memory you used:
- 35802 strings out of 494472
+ 36050 strings out of 494472
  100000,953878 words of node,token memory allocated
- 5808 words of node memory still in use:
-   55 hlist, 8 vlist, 8 rule, 11 disc, 12 local_par, 146 glue, 30 kern, 29 penal
-ty, 480 glyph, 75 attribute, 75 glue_spec, 75 attribute_list, 3 write, 22 pdf_co
-lorstack, 1 pdf_setmatrix, 1 pdf_save, 1 pdf_restore nodes
-   avail lists: 2:1115,3:98,4:141,5:292,6:595,7:1079,8:45,9:700,10:19,11:101
- 38270 multiletter control sequences out of 65536+600000
- 102 fonts using 19195015 bytes
+ 2718 words of node memory still in use:
+   61 hlist, 11 vlist, 8 rule, 2 disc, 7 local_par, 10 math, 80 glue, 9 kern, 24
+ penalty, 40 glyph, 100 attribute, 75 glue_spec, 100 attribute_list, 3 write, 20
+ pdf_colorstack, 3 pdf_setmatrix, 3 pdf_save, 3 pdf_restore nodes
+   avail lists: 2:1243,3:145,4:165,5:341,6:1406,7:1255,8:53,9:925,10:20,11:92
+ 38267 multiletter control sequences out of 65536+600000
+ 103 fonts using 19628623 bytes
  59i,18n,96p,796b,1223s stack positions out of 5000i,500n,10000p,200000b,100000s
 </home/kevin/.local/texlive/2017/texmf-dist/fonts/opentype/public/lm/lmmono10-re
 gular.otf></home/kevin/.local/texlive/2017/texmf-dist/fonts/opentype/public/fira
@@ -2306,13 +2685,15 @@ f-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></home/kevin/.local/texlive/201
 7/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></home/kevin/.local/texliv
 e/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></home/kevin/.local/t
 exlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></home/kevin/.lo
-cal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></home/kevin
-/.local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home
-/kevin/.local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on presentation.pdf (20 pages, 594963 bytes).
+cal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></home/kevin
+/.local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></home/k
+evin/.local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></
+home/kevin/.local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.p
+fb>
+Output written on presentation.pdf (41 pages, 675397 bytes).
 
-PDF statistics: 997 PDF objects out of 1000 (max. 8388607)
- 522 compressed objects within 6 object streams
- 45 named destinations out of 1000 (max. 131072)
- 40 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 1711 PDF objects out of 1728 (max. 8388607)
+ 894 compressed objects within 9 object streams
+ 98 named destinations out of 1000 (max. 131072)
+ 128 words of extra memory for PDF output out of 10000 (max. 100000000)
 

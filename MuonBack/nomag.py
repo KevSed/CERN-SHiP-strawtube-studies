@@ -3,10 +3,14 @@ from __future__ import division
 import ROOT as r
 import matplotlib.pyplot as plt
 import numpy as np
-from decorators import *
+#from decorators import *
 import sys
 import re
 
+if len(sys.argv)==1:
+    sys.exit("Please choose one of the flags -new -old -all and repeat.")
+
+targets = ['Target_1_1','Target_2_1','Target_3_1','Target_4_1','Target_5_1','Target_6_1','Target_7_1','Target_8_1','Target_9_1','Target_10_1','Target_11_1','Target_12_1','Target_13_1','Target_14_1','Target_15_1','Target_16_1','Target_17_1','Target_18_1','Target_19_1','Target_20_1','Target_1_1','Target_21_1','Target_22_1','Target_23_1']
 ##################################################################################
 ##################################################################################
 
@@ -50,23 +54,92 @@ def IPtoTarget(vtx, mom):
 if not '-showCanvas' in sys.argv:
     r.gROOT.SetBatch(r.kTRUE)
 
+cut=0
+
 # read the rootfile
 if '-old' in sys.argv:
-    f00 = r.TFile("/eos/user/k/ksedlacz/files/00-100000-MuonBack_rec.root", "READ")
+    f00 = r.TFile("/eos/user/k/ksedlacz/files/old/00-100000-MuonBack_rec.root", "READ")
+    #f00 = r.TFile("/eos/user/k/ksedlacz/files/old/01-100000-MuonBack_rec.root", "READ")
     directory='old'
     t00 = f00.cbmsim
+    trees = [t00]
 if '-smallFieldOld' in sys.argv:
     f10 = r.TFile('/eos/user/k/ksedlacz/files/10mT-100000_rec.root', 'READ')
     directory='10mT'
     t00 = f10.cbmsim
+    trees = [t00]
 if '-smallFieldNew' in sys.argv:
-    f10 = r.TFile('/eos/user/k/ksedlacz/files/10mT-100000-MuonBack-new_rec.root', 'READ')
+    f10 = r.TFile('/eos/user/k/ksedlacz/files/new/10mT-100000-MuonBack-new_rec.root', 'READ')
     directory='new/10mT'
     t00 = f10.cbmsim
-if len(sys.argv)==1:
-    f00 = r.TFile("/eos/user/k/ksedlacz/files/00-100000-MuonBack-new_rec.root", "READ")
+    trees = [t00]
+if '-new' in sys.argv:
+    f00 = r.TFile("/eos/user/k/ksedlacz/files/new/00-100000-MuonBack-new_rec.root", "READ")
     t00 = f00.cbmsim
+    trees = [t00]
     directory='new'
+if '-momcut' in sys.argv:
+    cut=50
+    directory='momcut{}'.format(cut)
+if '-comp' in sys.argv:
+    f_old = r.TFile("/eos/user/k/ksedlacz/files/old/00-100000-MuonBack_rec.root", "READ")
+    f_new = r.TFile("/eos/user/k/ksedlacz/files/new/00-100000-MuonBack-new_rec.root", "READ")
+    directory='comp'
+    t_old = f_old.cbmsim
+    t_new = f_new.cbmsim
+    trees = [t_old,t_new]
+    #######################################################################################
+    #                   SECOND TREE
+    #######################################################################################
+
+    target_xy_2 = r.TH2D('traget_xy_2','x:y at target (#mu^{-} and #mu^{+} reco) ',160,-600,600,160,-600,600)
+    target_xy_2.SetStats(False)
+
+    target_xy_mu_2 = r.TH2D('traget_xy_mu_2','x:y at target (#mu^{-} reco) ',160,-600,600,160,-600,600)
+    target_xy_mu_2.SetStats(False)
+
+    target_xy_amu_2 = r.TH2D('traget_xy_amu_2','x:y at target (#mu^{+} reco) ',160,-600,600,160,-600,600)
+    target_xy_amu_2.SetStats(False)
+
+    target_dist_2 = r.TH1D('target_dist_2','#mu^{-} and #mu^{+} dist to target (reco) ',200,0,400)
+    target_dist_2.SetStats(False)
+
+    target_dist_mu_2 = r.TH1D('target_dist_mu_2','#mu^{-} dist to target (reco) ',200,0,400)
+    target_dist_mu_2.SetStats(False)
+
+    target_dist_amu_2 = r.TH1D('target_dist_amu_2','#mu^{+} dist to target (reco) ',200,0,400)
+    target_dist_amu_2.SetStats(False)
+
+    mc_trgt_xy_mu_2 = r.TH2D('mc_trgt_xy_mu_2','x:y at target (#mu^{-} mc) ',160,-600,600,160,-600,600)
+    mc_trgt_xy_mu_2.SetStats(False)
+
+    mc_trgt_dist_mu_2 = r.TH1D('mc_trgt_dist_mu_2','#mu^{-} dist to target (mc) ',100,0,25)
+    mc_trgt_dist_mu_2.SetStats(False)
+
+    mc_trgt_xy_amu_2 = r.TH2D('mc_trgt_xy_amu_2','x:y at target (#mu^{+} mc) ',160,-600,600,160,-600,600)
+    mc_trgt_xy_amu_2.SetStats(False)
+
+    mc_trgt_dist_amu_2 = r.TH1D('mc_trgt_dist_amu_2','#mu^{+} dist to target (mc) ',100,0,25)
+    mc_trgt_dist_amu_2.SetStats(False)
+
+    mc_trgt_xy_2 = r.TH2D('mc_trgt_xy_2','x:y at target (#mu^{-} and #mu^{+} mc) ',160,-600,600,160,-600,600)
+    mc_trgt_xy_2.SetStats(False)
+
+    mc_trgt_dist_2 = r.TH1D('mc_trgt_dist_2','#mu^{+} and #mu^{-} dist to target (mc) ',100,0,25)
+    mc_trgt_dist_2.SetStats(False)
+
+    mc_pvtx_z_2 = r.TH1D('mc_pvtx_z_2','z distr. of production vertices (mc)',200,-8000,5000)
+    mc_pvtx_z_2.SetStats(False)
+
+    rec_mom_2 = r.TH1D('rec_mom_2','P distr. of tracks (reco)',200,0,200)
+    rec_mom_2.SetStats(False)
+
+    PDG_2 = r.TH1D('PDG_2','Particle distribution (mc)',40,-20,20)
+    PDG_2.SetStats(False)
+
+    rPDG_2 = r.TH1D('rPDG_2','Particle distribution (reco)',40,-20,20)
+    rPDG_2.SetStats(False)
+
 '''
 geo = r.TFile("files/geofile_500k.root","read")
 sGeo = geo.FAIRGeom
@@ -75,6 +148,10 @@ fGeo = r.gGeoManager'''
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # initialising histograms
+
+#######################################################################################
+#                   FIRST TREE
+#######################################################################################
 
 target_xy = r.TH2D('traget_xy','x:y at target (#mu^{-} and #mu^{+} reco) ',160,-600,600,160,-600,600)
 target_xy.SetStats(False)
@@ -97,14 +174,20 @@ target_dist_amu.SetStats(False)
 mc_trgt_xy_mu = r.TH2D('mc_trgt_xy_mu','x:y at target (#mu^{-} mc) ',160,-600,600,160,-600,600)
 mc_trgt_xy_mu.SetStats(False)
 
-mc_trgt_dist_mu = r.TH1D('mc_trgt_dist_mu','#mu^{-} dist to target (mc) ',100,0,100)
+mc_trgt_dist_mu = r.TH1D('mc_trgt_dist_mu','#mu^{-} dist to target (mc) ',100,0,25)
 mc_trgt_dist_mu.SetStats(False)
 
 mc_trgt_xy_amu = r.TH2D('mc_trgt_xy_amu','x:y at target (#mu^{+} mc) ',160,-600,600,160,-600,600)
 mc_trgt_xy_amu.SetStats(False)
 
-mc_trgt_dist_amu = r.TH1D('mc_trgt_dist_amu','#mu^{+} dist to target (mc) ',100,0,100)
+mc_trgt_dist_amu = r.TH1D('mc_trgt_dist_amu','#mu^{+} dist to target (mc) ',100,0,25)
 mc_trgt_dist_amu.SetStats(False)
+
+mc_trgt_xy = r.TH2D('mc_trgt_xy','x:y at target (#mu^{-} and #mu^{+} mc) ',160,-600,600,160,-600,600)
+mc_trgt_xy.SetStats(False)
+
+mc_trgt_dist = r.TH1D('mc_trgt_dist','#mu^{+} and #mu^{-} dist to target (mc) ',100,0,25)
+mc_trgt_dist.SetStats(False)
 
 mc_pvtx_z = r.TH1D('mc_pvtx_z','z distr. of production vertices (mc)',200,-8000,5000)
 mc_pvtx_z.SetStats(False)
@@ -118,96 +201,172 @@ PDG.SetStats(False)
 rPDG = r.TH1D('rPDG','Particle distribution (reco)',40,-20,20)
 rPDG.SetStats(False)
 
-targets = ['Target_1_1','Target_2_1','Target_3_1','Target_4_1','Target_5_1','Target_6_1','Target_7_1','Target_8_1','Target_9_1','Target_10_1','Target_11_1','Target_12_1','Target_13_1','Target_14_1','Target_15_1','Target_16_1','Target_17_1','Target_18_1','Target_19_1','Target_20_1','Target_1_1','Target_21_1','Target_22_1','Target_23_1']
+if '-comp' in sys.argv:
+    hists1 = [target_xy     ,target_dist     ,target_xy_mu     ,target_dist_mu      ,target_xy_amu     ,target_dist_amu     ,mc_trgt_dist     ,mc_trgt_xy     ,mc_trgt_xy_mu     ,mc_trgt_dist_mu     ,mc_trgt_xy_amu     ,mc_trgt_dist_amu     ,mc_pvtx_z     ,rec_mom     ,PDG     ,rPDG]
+    hists2 = [target_xy_2,target_dist_2,target_xy_mu_2,target_dist_mu_2,target_xy_amu_2,target_dist_amu_2,mc_trgt_dist_2,mc_trgt_xy_2,mc_trgt_xy_mu_2,mc_trgt_dist_mu_2,mc_trgt_xy_amu_2,mc_trgt_dist_amu_2,mc_pvtx_z_2,rec_mom_2,PDG_2,rPDG_2]
+    n=0
+    strg = 'TargetArea'
+    for tree in trees:
+        items = list(range(0, tree.GetEntries()))
+        l = len(items)
+        print '\n' "Analysing tree ", n+1, "   "
+        muon=0
+        mc_muon=0
+        amuon=0
+        mc_amuon=0
+        j=0
+        target_z = -7067.0
+        if n==0:
+            hists = hists1
+        else: hists = hists2
+        for event in tree:
+            j=j+1
+            w = event.MCTrack[1].GetWeight()
+            for candidate in event.MCTrack:
+                w = candidate.GetWeight()
+                pdg = candidate.GetPdgCode()
+                x = candidate.GetStartX()
+                y = candidate.GetStartY()
+                z = candidate.GetStartZ()
+                px = candidate.GetPx()
+                py = candidate.GetPy()
+                pz = candidate.GetPz()
+                frac = (target_z-z)/pz
+                #if z<-7003.5 and z>-7130.5:
+                xtarget = x+frac*px
+                ytarget = y+frac*py
+                dist = np.sqrt(xtarget**2+ytarget**2)
+                hists[14].Fill(pdg)
+                if pdg==13:
+                    mc_muon=mc_muon+1
+                    hists[6].Fill(dist,w)
+                    hists[7].Fill(xtarget,ytarget,w)
+                    hists[8].Fill(xtarget,ytarget,w)
+                    hists[9].Fill(dist,w)
+                if pdg==-13:
+                    mc_amuon=mc_amuon+1
+                    hists[6].Fill(dist,w)
+                    hists[7].Fill(xtarget,ytarget,w)
+                    hists[10].Fill(xtarget,ytarget,w)
+                    hists[11].Fill(dist,w)
+                hists[12].Fill(z,w)
+                #part = fGeo.FindNode(mctrack.GetStartX(),mctrack.GetStartY(),mctrack.GetStartZ()).GetName()
+                #if part in targets:
+            for track in event.FitTracks:
+                if track.getFitStatus().getTrackLen() >0:
+                    state = track.getFittedState()
+                    mom = state.getMom()
+                    MOM = np.sqrt(mom[0]**2+mom[1]**2+mom[2]**2)
+                    if MOM>cut:
+                        pos = state.getPos()
+                        pdg = state.getPDG()
+                        Dir = state.getDir()
+                        #if pdg==13:
+                        #elif pdg==-13:
+                        x = pos[0]
+                        y = pos[1]
+                        z = pos[2]
+                        frac = (-z+target_z)/mom[2]
+                        xtarget = x+frac*mom[0]
+                        ytarget = y+frac*mom[1]
+                        dist = np.sqrt(xtarget**2+ytarget**2)
+                        hists[13].Fill(MOM)
+                        hists[15].Fill(pdg)
+                        if pdg==13:
+                            hists[2].Fill(xtarget,ytarget)
+                            hists[3].Fill(dist)
+                            muon=muon+1
+                        if pdg==-13:
+                            hists[4].Fill(xtarget,ytarget)
+                            hists[5].Fill(dist)
+                            amuon=amuon+1
+                        hists[0].Fill(xtarget,ytarget)
+                        hists[1].Fill(dist)
+                print_progress(j + 1, l, prefix = 'Progress:', suffix = 'Complete')
+        n=n+1
+        comp_2 = PDG_2.Integral()+1
+        rcomp_2 = rPDG_2.Integral()+1
 
-#trees = [t00,t10]
-
-
-
-
-
-
-
-
-
-
-
-
-n=0
-strg = 'TargetArea'
-items = list(range(0, t00.GetEntries()))
-l = len(items)
-print '\n' "Analysing tree ", n+1, "   "
-muon=0
-mc_muon=0
-amuon=0
-mc_amuon=0
-j=0
-target_z = -7067.0
-for event in t00:
-    j=j+1
-    w = event.MCTrack[1].GetWeight()
-    for candidate in event.MCTrack:
-        w = candidate.GetWeight()
-        pdg = candidate.GetPdgCode()
-        x = candidate.GetStartX()
-        y = candidate.GetStartY()
-        z = candidate.GetStartZ()
-        px = candidate.GetPx()
-        py = candidate.GetPy()
-        pz = candidate.GetPz()
-        frac = (target_z-z)/pz
-        if z<-7003.5 and z>-7130.5:
-            xtarget = x#+frac*px
-            ytarget = y#+frac*py
-            dist = np.sqrt(xtarget**2+ytarget**2)
-        PDG.Fill(pdg)
-        if pdg==13:
-            mc_muon=mc_muon+1
-            mc_trgt_xy_mu.Fill(xtarget,ytarget,w)
-            mc_trgt_dist_mu.Fill(dist,w)
-        if pdg==-13:
-            mc_amuon=mc_amuon+1
-            mc_trgt_xy_amu.Fill(xtarget,ytarget,w)
-            mc_trgt_dist_amu.Fill(dist,w)
-        mc_pvtx_z.Fill(z,w)
-        #part = fGeo.FindNode(mctrack.GetStartX(),mctrack.GetStartY(),mctrack.GetStartZ()).GetName()
-        #if part in targets:
-    for track in event.FitTracks:
-        if track.getFitStatus().getTrackLen() >0:
-            state = track.getFittedState()
-            mom = state.getMom()
-            pos = state.getPos()
-            pdg = state.getPDG()
-            Dir = state.getDir()
-            #if pdg==13:
-            #elif pdg==-13:
-            x = pos[0]
-            y = pos[1]
-            z = pos[2]
-            frac = (-z+target_z)/mom[2]
-            xtarget = x+frac*mom[0]
-            ytarget = y+frac*mom[1]
-            dist = np.sqrt(xtarget**2+ytarget**2)
-            MOM = np.sqrt(mom[0]**2+mom[1]**2+mom[2]**2)
-            rec_mom.Fill(MOM)
-            rPDG.Fill(pdg)
-            if pdg==13:
-                target_xy_mu.Fill(xtarget,ytarget)
-                target_dist_mu.Fill(dist)
-                muon=muon+1
-            if pdg==-13:
-                target_xy_amu.Fill(xtarget,ytarget)
-                target_dist_amu.Fill(dist)
-                amuon=amuon+1
-            target_xy.Fill(xtarget,ytarget)
-            target_dist.Fill(dist)
-        print_progress(j + 1, l, prefix = 'Progress:', suffix = 'Complete')
-
-comp = PDG.Integral()
-rcomp = rPDG.Integral()
-
-
+if not '-comp' in sys.argv:
+    n=0
+    strg = 'TargetArea'
+    for tree in trees:
+        items = list(range(0, tree.GetEntries()))
+        l = len(items)
+        print '\n' "Analysing tree ", n+1, "   "
+        muon=0
+        mc_muon=0
+        amuon=0
+        mc_amuon=0
+        j=0
+        target_z = -7067.0
+        for event in tree:
+            j=j+1
+            w = event.MCTrack[1].GetWeight()
+            for candidate in event.MCTrack:
+                w = candidate.GetWeight()
+                pdg = candidate.GetPdgCode()
+                x = candidate.GetStartX()
+                y = candidate.GetStartY()
+                z = candidate.GetStartZ()
+                px = candidate.GetPx()
+                py = candidate.GetPy()
+                pz = candidate.GetPz()
+                frac = (target_z-z)/pz
+                #if z<-7003.5 and z>-7130.5:
+                xtarget = x+frac*px
+                ytarget = y+frac*py
+                dist = np.sqrt(xtarget**2+ytarget**2)
+                PDG.Fill(pdg)
+                if pdg==13:
+                    mc_muon=mc_muon+1
+                    mc_trgt_xy_mu.Fill(xtarget,ytarget,w)
+                    mc_trgt_xy.Fill(xtarget,ytarget,w)
+                    mc_trgt_dist_mu.Fill(dist,w)
+                    mc_trgt_dist.Fill(dist,w)
+                if pdg==-13:
+                    mc_amuon=mc_amuon+1
+                    mc_trgt_xy_amu.Fill(xtarget,ytarget,w)
+                    mc_trgt_xy.Fill(xtarget,ytarget,w)
+                    mc_trgt_dist_amu.Fill(dist,w)
+                    mc_trgt_dist.Fill(dist,w)
+                mc_pvtx_z.Fill(z,w)
+                #part = fGeo.FindNode(mctrack.GetStartX(),mctrack.GetStartY(),mctrack.GetStartZ()).GetName()
+                #if part in targets:
+            for track in event.FitTracks:
+                if track.getFitStatus().getTrackLen() >0:
+                    state = track.getFittedState()
+                    mom = state.getMom()
+                    MOM = np.sqrt(mom[0]**2+mom[1]**2+mom[2]**2)
+                    if MOM>cut:
+                        pos = state.getPos()
+                        pdg = state.getPDG()
+                        Dir = state.getDir()
+                        #if pdg==13:
+                        #elif pdg==-13:
+                        x = pos[0]
+                        y = pos[1]
+                        z = pos[2]
+                        frac = (-z+target_z)/mom[2]
+                        xtarget = x+frac*mom[0]
+                        ytarget = y+frac*mom[1]
+                        dist = np.sqrt(xtarget**2+ytarget**2)
+                        rec_mom.Fill(MOM)
+                        rPDG.Fill(pdg)
+                        if pdg==13:
+                            target_xy_mu.Fill(xtarget,ytarget)
+                            target_dist_mu.Fill(dist)
+                            muon=muon+1
+                        if pdg==-13:
+                            target_xy_amu.Fill(xtarget,ytarget)
+                            target_dist_amu.Fill(dist)
+                            amuon=amuon+1
+                        target_xy.Fill(xtarget,ytarget)
+                        target_dist.Fill(dist)
+                print_progress(j + 1, l, prefix = 'Progress:', suffix = 'Complete')
+        n=n+1
+comp = PDG.Integral()+1
+rcomp = rPDG.Integral()+1
 
 
 
@@ -330,6 +489,16 @@ z_canv.Draw()
 z_canv.SaveAs('hists/nofield/{}/mc_pvtx_z.pdf'.format(directory))
 z_canv.Close()
 
+#----------------- MC PROJECTIONS MU & AMU ----------------------------------
+mc_trgt_x = mc_trgt_xy.ProjectionX()
+mc_trgt_x.SetTitle('x projection of #mu^{-} and #mu^{+} positions at target')
+mc_trgt_x.SetFillColor(r.kGreen+2)
+mc_trgt_y = mc_trgt_xy.ProjectionY()
+mc_trgt_y.SetTitle('y projection of #mu^{-} and #mu^{+} positions at target')
+mc_trgt_y.SetFillColor(r.kBlue+2)
+mc_trgt_x.SetStats(False)
+mc_trgt_y.SetStats(False)
+
 
 #----------------- MC PROJECTIONS MU ----------------------------------
 mc_trgt_x_mu = mc_trgt_xy_mu.ProjectionX()
@@ -350,6 +519,19 @@ mc_trgt_y_amu.SetTitle('y projection of #mu^{+} positions at target')
 mc_trgt_y_amu.SetFillColor(r.kBlue+2)
 mc_trgt_x_amu.SetStats(False)
 mc_trgt_y_amu.SetStats(False)
+
+#----------------- TEXTS MU & AMU -----------------------------------------
+xtext = r.TLatex(.13, .85,"RMS = {:.4g}cm                                       mean = {:.4g}cm #pm {:.4g}cm".format(mc_trgt_x.GetRMS(),mc_trgt_x.GetMean(),mc_trgt_x.GetMeanError()))
+xtext.SetNDC(r.kTRUE)
+xtext.SetTextSize(0.035)
+ytext = r.TLatex(.13, .85,"RMS = {:.4g}cm                                       mean = {:.4g}cm #pm {:.4g}cm".format(mc_trgt_y.GetRMS(),mc_trgt_y.GetMean(),mc_trgt_y.GetMeanError()))
+ytext.SetNDC(r.kTRUE)
+ytext.SetTextSize(0.035)
+dtext2 = r.TLatex(.5, .65,"<1cm: {:.4g}%".format(mc_trgt_dist.Integral(0,1)/mc_trgt_dist.Integral()*100))
+dtext2.SetNDC(r.kTRUE)
+mc_xytext = r.TLatex(.13,.85,"Number of tracks: {}".format(mc_trgt_xy.Integral()))
+mc_xytext.SetNDC(r.kTRUE)
+mc_xytext.SetTextSize(0.035)
 
 #----------------- TEXTS MU -----------------------------------------
 xtext_mu = r.TLatex(.13, .85,"RMS = {:.4g}cm                                       mean = {:.4g}cm #pm {:.4g}cm".format(mc_trgt_x_mu.GetRMS(),mc_trgt_x_mu.GetMean(),mc_trgt_x_mu.GetMeanError()))
@@ -379,6 +561,38 @@ mc_xytext_amu = r.TLatex(.13,.85,"Number of tracks: {}".format(mc_trgt_xy_amu.In
 mc_xytext_amu.SetNDC(r.kTRUE)
 mc_xytext_amu.SetTextSize(0.035)
 
+#----------------------- DRAW MUON & AMUON MONTE CARLO -----------------------------------
+ctrgt = r.TCanvas('ctrgt', 'ctrgt', 2*950,2*650)
+ctrgt.Divide(2,2)
+
+ctrgt.cd(1)
+mc_trgt_xy.GetXaxis().SetTitle('x')
+mc_trgt_xy.GetYaxis().SetTitle('y')
+mc_trgt_xy.Draw('COLZ')
+mc_xytext.Draw()
+flag.Draw()
+#el.Draw()
+
+ctrgt.cd(2)
+mc_trgt_dist.GetXaxis().SetTitle('dist [cm]')
+mc_trgt_dist.Draw('HIST BAR')
+dtext.Draw()
+#dtext2_mu.Draw()
+
+ctrgt.cd(3)
+mc_trgt_x.GetXaxis().SetTitle('x [cm]')
+mc_trgt_x.Draw('HIST BAR')
+xtext.Draw()
+
+ctrgt.cd(4)
+mc_trgt_y.GetXaxis().SetTitle('y [cm]')
+mc_trgt_y.Draw('HIST BAR')
+ytext.Draw()
+
+ctrgt.Draw()
+ctrgt.SaveAs("hists/nofield/{}/mc_target_dist.pdf".format(directory))
+ctrgt.Close()
+
 #----------------------- DRAW MUON MONTE CARLO -----------------------------------
 ctrgt_mu = r.TCanvas('ctrgt_mu', 'ctrgt_mu', 2*950,2*650)
 ctrgt_mu.Divide(2,2)
@@ -398,7 +612,7 @@ ctrgt_mu.cd(2)
 mc_trgt_dist_mu.GetXaxis().SetTitle('dist [cm]')
 mc_trgt_dist_mu.Draw('HIST BAR')
 dtext.Draw()
-dtext2_mu.Draw()
+#dtext2_mu.Draw()
 
 ctrgt_mu.cd(3)
 mc_trgt_x_mu.GetXaxis().SetTitle('x [cm]')
@@ -430,7 +644,7 @@ ctrgt_amu.cd(2)
 mc_trgt_dist_amu.GetXaxis().SetTitle('dist [cm]')
 mc_trgt_dist_amu.Draw('HIST BAR')
 dtext.Draw()
-dtext2_amu.Draw()
+#dtext2_amu.Draw()
 
 ctrgt_amu.cd(3)
 mc_trgt_x_amu.GetXaxis().SetTitle('x [cm]')
@@ -523,6 +737,38 @@ targ_y_amu.SetFillColor(r.kBlue+2)
 targ_x_amu.SetStats(False)
 targ_y_amu.SetStats(False)
 
+
+if '-comp' in sys.argv:
+    #----------------- PROJECTIONS MU & AMU ----------------------------------
+    targ_x_2 = target_xy_2.ProjectionX()
+    targ_x_2.SetTitle('x projection of #mu^{-} and #mu^{+} positions at target')
+    targ_x_2.SetFillColor(r.kGreen+2)
+    targ_y_2 = target_xy_2.ProjectionY()
+    targ_y_2.SetTitle('y projection of #mu^{-} and #mu^{+} positions at target')
+    targ_y_2.SetFillColor(r.kBlue+2)
+    targ_x_2.SetStats(False)
+    targ_y_2.SetStats(False)
+
+    #----------------- PROJECTIONS MU ----------------------------------
+    targ_x_mu_2 = target_xy_mu_2.ProjectionX()
+    targ_x_mu_2.SetTitle('x projection of #mu^{-} positions at target')
+    targ_x_mu_2.SetFillColor(r.kGreen+2)
+    targ_y_mu_2 = target_xy_mu_2.ProjectionY()
+    targ_y_mu_2.SetTitle('y projection of #mu^{-} positions at target')
+    targ_y_mu_2.SetFillColor(r.kBlue+2)
+    targ_x_mu_2.SetStats(False)
+    targ_y_mu_2.SetStats(False)
+
+    #----------------- PROJECTIONS AMU ----------------------------------
+    targ_x_amu_2 = target_xy_amu_2.ProjectionX()
+    targ_x_amu_2.SetTitle('x projection of #mu^{+} positions at target')
+    targ_x_amu_2.SetFillColor(r.kGreen+2)
+    targ_y_amu_2 = target_xy_amu_2.ProjectionY()
+    targ_y_amu_2.SetTitle('y projection of #mu^{+} positions at target')
+    targ_y_amu_2.SetFillColor(r.kBlue+2)
+    targ_x_amu_2.SetStats(False)
+    targ_y_amu_2.SetStats(False)
+
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 # S e t u p   m o d e l
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -530,101 +776,190 @@ targ_y_amu.SetStats(False)
 # Declare variables x,mean,sigma with associated name, title, initial value and allowed range
 top = 90
 bot = -top
-x_mu = ROOT.RooRealVar("x_mu","x_mu",bot,top)
-x_mu_mean = ROOT.RooRealVar("x_mu_mean","mean in x",0,-30,30)
-x_mu_sigma = ROOT.RooRealVar("x_mu_sigma","sigma x",50,1,130)
+x_mu = r.RooRealVar("x_mu","x_mu",bot,top)
+x_mu_mean = r.RooRealVar("x_mu_mean","mean in x",0,-30,30)
+x_mu_sigma = r.RooRealVar("x_mu_sigma","sigma x",50,1,130)
 
-x_amu = ROOT.RooRealVar("x_amu","x_amu",bot,top)
-x_amu_mean = ROOT.RooRealVar("x_amu_mean","mean in x",0,-30,30)
-x_amu_sigma = ROOT.RooRealVar("x_amu_sigma","sigma x",50,1,130)
+x_amu = r.RooRealVar("x_amu","x_amu",bot,top)
+x_amu_mean = r.RooRealVar("x_amu_mean","mean in x",0,-30,30)
+x_amu_sigma = r.RooRealVar("x_amu_sigma","sigma x",50,1,130)
 
-y_mu = ROOT.RooRealVar("y_mu","y_mu",bot,top)
-y_mu_mean = ROOT.RooRealVar("y_mu_mean","mean in y",0,-30,30)
-y_mu_sigma = ROOT.RooRealVar("y_mu_sigma","sigma y",50,1,130)
+y_mu = r.RooRealVar("y_mu","y_mu",bot,top)
+y_mu_mean = r.RooRealVar("y_mu_mean","mean in y",0,-30,30)
+y_mu_sigma = r.RooRealVar("y_mu_sigma","sigma y",50,1,130)
 
-y_amu = ROOT.RooRealVar("y_amu","y_amu",bot,top)
-y_amu_mean = ROOT.RooRealVar("y_amu_mean","mean in y",0,-30,30)
-y_amu_sigma = ROOT.RooRealVar("y_amu_sigma","sigma y",50,1,130)
+y_amu = r.RooRealVar("y_amu","y_amu",bot,top)
+y_amu_mean = r.RooRealVar("y_amu_mean","mean in y",0,-30,30)
+y_amu_sigma = r.RooRealVar("y_amu_sigma","sigma y",50,1,130)
 
 # Build gaussian p.d.f in terms of x,mean and sigma
-x_mu_gauss = ROOT.RooGaussian("x_mu_gauss","gaussian PDF",x_mu,x_mu_mean,x_mu_sigma)
-x_amu_gauss = ROOT.RooGaussian("x_amu_gauss","gaussian PDF",x_amu,x_amu_mean,x_amu_sigma)
-y_mu_gauss = ROOT.RooGaussian("y_mu_gauss","gaussian PDF",y_mu,y_mu_mean,y_mu_sigma)
-y_amu_gauss = ROOT.RooGaussian("y_amu_gauss","gaussian PDF",y_amu,y_amu_mean,y_amu_sigma)
+x_mu_gauss = r.RooGaussian("x_mu_gauss","gaussian PDF",x_mu,x_mu_mean,x_mu_sigma)
+x_amu_gauss = r.RooGaussian("x_amu_gauss","gaussian PDF",x_amu,x_amu_mean,x_amu_sigma)
+y_mu_gauss = r.RooGaussian("y_mu_gauss","gaussian PDF",y_mu,y_mu_mean,y_mu_sigma)
+y_amu_gauss = r.RooGaussian("y_amu_gauss","gaussian PDF",y_amu,y_amu_mean,y_amu_sigma)
+
+if '-comp' in sys.argv:
+    x_mu_2 = r.RooRealVar("x_mu_2","x_mu",bot,top)
+    x_mu_mean_2 = r.RooRealVar("x_mu_mean_2","mean in x",0,-30,30)
+    x_mu_sigma_2 = r.RooRealVar("x_mu_sigma_2","sigma x",50,1,130)
+
+    x_amu_2 = r.RooRealVar("x_amu_2","x_amu",bot,top)
+    x_amu_mean_2 = r.RooRealVar("x_amu_mean_2","mean in x",0,-30,30)
+    x_amu_sigma_2 = r.RooRealVar("x_amu_sigma_2","sigma x",50,1,130)
+
+    y_mu_2 = r.RooRealVar("y_mu_2","y_mu",bot,top)
+    y_mu_mean_2 = r.RooRealVar("y_mu_mean_2","mean in y",0,-30,30)
+    y_mu_sigma_2 = r.RooRealVar("y_mu_sigma","sigma y",50,1,130)
+
+    y_amu_2 = r.RooRealVar("y_amu_2","y_amu",bot,top)
+    y_amu_mean_2 = r.RooRealVar("y_amu_mean_2","mean in y",0,-30,30)
+    y_amu_sigma_2 = r.RooRealVar("y_amu_sigma_2","sigma y",50,1,130)
+
+    # Build gaussian p.d.f in terms of x,mean and sigma
+    x_mu_gauss_2 = r.RooGaussian("x_mu_gauss_2","gaussian PDF",x_mu_2,x_mu_mean_2,x_mu_sigma_2)
+    x_amu_gauss_2 = r.RooGaussian("x_amu_gauss_2","gaussian PDF",x_amu_2,x_amu_mean_2,x_amu_sigma_2)
+    y_mu_gauss_2 = r.RooGaussian("y_mu_gauss_2","gaussian PDF",y_mu_2,y_mu_mean_2,y_mu_sigma_2)
+    y_amu_gauss_2 = r.RooGaussian("y_amu_gauss_2","gaussian PDF",y_amu_2,y_amu_mean_2,y_amu_sigma_2)
+
 
 
 # F i t   m o d e l   t o   d a t a
 # -----------------------------
 
-data_x_mu = ROOT.RooDataHist("data_x_mu", "data_x_mu", r.RooArgList(x_mu),r.RooFit.Import(targ_x_mu))
-data_x_amu = ROOT.RooDataHist("data_x_amu", "data_x_amu", r.RooArgList(x_amu),r.RooFit.Import(targ_x_amu))
-data_y_mu = ROOT.RooDataHist("data_y_mu", "data_y_mu", r.RooArgList(y_mu),r.RooFit.Import(targ_y_mu))
-data_y_amu = ROOT.RooDataHist("data_y_amu", "data_y_amu", r.RooArgList(y_amu),r.RooFit.Import(targ_y_amu))
+data_x_mu = r.RooDataHist("data_x_mu", "data_x_mu", r.RooArgList(x_mu),r.RooFit.Import(targ_x_mu))
+data_x_amu = r.RooDataHist("data_x_amu", "data_x_amu", r.RooArgList(x_amu),r.RooFit.Import(targ_x_amu))
+data_y_mu = r.RooDataHist("data_y_mu", "data_y_mu", r.RooArgList(y_mu),r.RooFit.Import(targ_y_mu))
+data_y_amu = r.RooDataHist("data_y_amu", "data_y_amu", r.RooArgList(y_amu),r.RooFit.Import(targ_y_amu))
 
-
-# Make plot of binned dataset showing Poisson error bars (ROOT.RooFit
+# Make plot of binned dataset showing Poisson error bars (r.RooFit
 # default)
-frame1 = x_mu.frame(ROOT.RooFit.Title("gauss fit to x projection of reconstructed IP for #mu^{-} at 10mT"))
+frame1 = x_mu.frame(r.RooFit.Title("gauss fit to x projection of reconstructed IP for #mu^{-}"))
 data_x_mu.plotOn(frame1)
 
-frame2 = x_amu.frame(ROOT.RooFit.Title("gauss fit to x projection of reconstructed IP for #mu^{+} at 10mT"))
+frame2 = x_amu.frame(r.RooFit.Title("gauss fit to x projection of reconstructed IP for #mu^{+}"))
 data_x_amu.plotOn(frame2)
 
-frame3 = y_mu.frame(ROOT.RooFit.Title("gauss fit to y projection of reconstructed IP for #mu^{-} at 10mT"))
+frame3 = y_mu.frame(r.RooFit.Title("gauss fit to y projection of reconstructed IP for #mu^{-}"))
 data_y_mu.plotOn(frame3)
 
-frame4 = y_amu.frame(ROOT.RooFit.Title("gauss fit to y projection of reconstructed IP for #mu^{+} at 10mT"))
+frame4 = y_amu.frame(r.RooFit.Title("gauss fit to y projection of reconstructed IP for #mu^{+}"))
 data_y_amu.plotOn(frame4)
 
-# Fit a Gaussian p.d.f to the data
+if '-comp' in sys.argv:
+    data_x_mu_2 = r.RooDataHist("data_x_mu_2", "data_x_mu", r.RooArgList(x_mu_2),r.RooFit.Import(targ_x_mu_2))
+    data_x_amu_2 = r.RooDataHist("data_x_amu_2", "data_x_amu", r.RooArgList(x_amu_2),r.RooFit.Import(targ_x_amu_2))
+    data_y_mu_2 = r.RooDataHist("data_y_mu_2", "data_y_mu", r.RooArgList(y_mu_2),r.RooFit.Import(targ_y_mu_2))
+    data_y_amu_2 = r.RooDataHist("data_y_amu_2", "data_y_amu", r.RooArgList(y_amu_2),r.RooFit.Import(targ_y_amu_2))
+    # Make plot of binned dataset showing Poisson error bars (r.RooFit
+    # default)
+    frame5 = x_mu_2.frame(r.RooFit.Title("gauss fit to x projection of reconstructed IP for #mu^{-}"))
+    data_x_mu_2.plotOn(frame5)
+    frame6 = x_amu_2.frame(r.RooFit.Title("gauss fit to x projection of reconstructed IP for #mu^{+}"))
+    data_x_amu_2.plotOn(frame6)
+    frame7 = y_mu_2.frame(r.RooFit.Title("gauss fit to y projection of reconstructed IP for #mu^{-}"))
+    data_y_mu_2.plotOn(frame7)
+    frame8 = y_amu_2.frame(r.RooFit.Title("gauss fit to y projection of reconstructed IP for #mu^{+}"))
+    data_y_amu_2.plotOn(frame8)
 
-x_mu_gauss.fitTo(data_x_mu)
-x_mu_gauss.plotOn(frame1)
-x_amu_gauss.fitTo(data_x_amu)
-x_amu_gauss.plotOn(frame2)
-y_mu_gauss.fitTo(data_y_mu)
-y_mu_gauss.plotOn(frame3)
-y_amu_gauss.fitTo(data_y_amu)
-y_amu_gauss.plotOn(frame4)
 
-core1 = r.TLatex(.13, .85,"Inner {:.3g}%".format(targ_x_mu.Integral(bot,top)/targ_x_mu.Integral()*100))
-core1.SetNDC(r.kTRUE)
-core1.SetTextSize(0.044)
+    # Fit a Gaussian p.d.f to the data
 
-core2 = r.TLatex(.13, .85,"Inner {:.3g}%".format(targ_x_amu.Integral(bot,top)/targ_x_amu.Integral()*100))
-core2.SetNDC(r.kTRUE)
-core2.SetTextSize(0.044)
+    x_mu_gauss.fitTo(data_x_mu)
 
-core3 = r.TLatex(.13, .85,"Inner {:.3g}%".format(targ_y_mu.Integral(bot,top)/targ_y_mu.Integral()*100))
-core3.SetNDC(r.kTRUE)
-core3.SetTextSize(0.044)
+    frame5.addObject(x_mu_gauss)
+    x_amu_gauss.fitTo(data_x_amu)
+    frame6.addObject(x_amu_gauss)
+    y_mu_gauss.fitTo(data_y_mu)
+    frame7.addObject(y_mu_gauss)
+    y_amu_gauss.fitTo(data_y_amu)
+    frame8.addObject(y_amu_gauss)
 
-core4 = r.TLatex(.13, .85,"Inner {:.3g}%".format(targ_y_amu.Integral(bot,top)/targ_y_amu.Integral()*100))
-core4.SetNDC(r.kTRUE)
-core4.SetTextSize(0.044)
+    x_mu_gauss_2.fitTo(data_x_mu_2)
+    x_mu_gauss_2.plotOn(frame5)
+    x_amu_gauss_2.fitTo(data_x_amu_2)
+    x_amu_gauss_2.plotOn(frame6)
+    y_mu_gauss_2.fitTo(data_y_mu_2)
+    y_mu_gauss_2.plotOn(frame7)
+    y_amu_gauss_2.fitTo(data_y_amu_2)
+    y_amu_gauss_2.plotOn(frame8)
 
-gauss_can = r.TCanvas('gauss_can','gauss_can',2*950,2*650)
-gauss_can.Divide(2,2)
+    gauss_can_comp = r.TCanvas('gauss_can_comp','gauss_can_comp',2*950,2*650)
+    gauss_can_comp.Divide(2,2)
 
-gauss_can.cd(1)
-frame1.Draw()
-core1.Draw()
+    gauss_can_comp.cd(1)
+    frame1.Draw()
+    frame5.Draw()
 
-gauss_can.cd(2)
-frame2.Draw()
-core2.Draw()
+    gauss_can_comp.cd(2)
+    frame2.Draw()
+    frame6.Draw()
 
-gauss_can.cd(3)
-frame3.Draw()
-core3.Draw()
+    gauss_can_comp.cd(3)
+    frame3.Draw()
+    frame7.Draw()
 
-gauss_can.cd(4)
-frame4.Draw()
-core4.Draw()
+    gauss_can_comp.cd(4)
+    frame4.Draw()
+    frame8.Draw()
 
-gauss_can.Draw()
-gauss_can.SaveAs('hists/nofield/{}/gauss_fit.pdf'.format(directory))
-gauss_can.Close()
+    gauss_can_comp.Draw()
+    gauss_can_comp.SaveAs('hists/nofield/{}/gauss_fit_comp.pdf'.format(directory))
+    gauss_can_comp.Close()
+
+if not '-comp' in sys.argv:
+    # Fit a Gaussian p.d.f to the data
+
+    x_mu_gauss.fitTo(data_x_mu)
+    x_mu_gauss.plotOn(frame1)
+    x_mu_gauss.paramOn(frame1, r.RooFit.Format("NELU", r.RooFit.AutoPrecision(2)), r.RooFit.Layout(0.55, 0.9,0.9))
+    x_amu_gauss.fitTo(data_x_amu)
+    x_amu_gauss.plotOn(frame2)
+    x_amu_gauss.paramOn(frame2, r.RooFit.Format("NELU", r.RooFit.AutoPrecision(2)), r.RooFit.Layout(0.55, 0.9,0.9))
+    y_mu_gauss.fitTo(data_y_mu)
+    y_mu_gauss.plotOn(frame3)
+    y_mu_gauss.paramOn(frame3, r.RooFit.Format("NELU", r.RooFit.AutoPrecision(2)), r.RooFit.Layout(0.55, 0.9,0.9))
+    y_amu_gauss.fitTo(data_y_amu)
+    y_amu_gauss.plotOn(frame4)
+    y_amu_gauss.paramOn(frame4, r.RooFit.Format("NELU", r.RooFit.AutoPrecision(2)), r.RooFit.Layout(0.55, 0.9,0.9))
+
+    core1 = r.TLatex(.13, .85,"Inner {:.3g}%".format(targ_x_mu.Integral(bot,top)/(1+targ_x_mu.Integral())*100))
+    core1.SetNDC(r.kTRUE)
+    core1.SetTextSize(0.044)
+
+    core2 = r.TLatex(.13, .85,"Inner {:.3g}%".format(targ_x_amu.Integral(bot,top)/(1+targ_x_amu.Integral())*100))
+    core2.SetNDC(r.kTRUE)
+    core2.SetTextSize(0.044)
+
+    core3 = r.TLatex(.13, .85,"Inner {:.3g}%".format(targ_y_mu.Integral(bot,top)/(1+targ_y_mu.Integral())*100))
+    core3.SetNDC(r.kTRUE)
+    core3.SetTextSize(0.044)
+
+    core4 = r.TLatex(.13, .85,"Inner {:.3g}%".format(targ_y_amu.Integral(bot,top)/(1+targ_y_amu.Integral())*100))
+    core4.SetNDC(r.kTRUE)
+    core4.SetTextSize(0.044)
+
+    gauss_can = r.TCanvas('gauss_can','gauss_can',2*950,2*650)
+    gauss_can.Divide(2,2)
+
+    gauss_can.cd(1)
+    frame1.Draw()
+    core1.Draw()
+
+    gauss_can.cd(2)
+    frame2.Draw()
+    core2.Draw()
+
+    gauss_can.cd(3)
+    frame3.Draw()
+    core3.Draw()
+
+    gauss_can.cd(4)
+    frame4.Draw()
+    core4.Draw()
+
+    gauss_can.Draw()
+    gauss_can.SaveAs('hists/nofield/{}/gauss_fit.pdf'.format(directory))
+    gauss_can.Close()
 
 #----------------- TEXTS MU & AMU -----------------------------------------
 
@@ -637,7 +972,7 @@ xtext.SetTextSize(0.044)
 ytext = r.TLatex(.13, .85,"RMS = {:.4g}cm                         mean = {:.4g}cm #pm {:.4g}cm".format(targ_y.GetRMS(),targ_y.GetMean(),targ_y.GetMeanError()))
 ytext.SetNDC(r.kTRUE)
 ytext.SetTextSize(0.044)
-dtext2 = r.TLatex(.5, .65,"<15cm: {:.4g}%".format(target_dist.Integral(0,15)/target_dist.Integral()*100))
+dtext2 = r.TLatex(.5, .65,"<15cm: {:.4g}%".format(target_dist.Integral(0,15)/(1+target_dist.Integral())*100))
 dtext2.SetNDC(r.kTRUE)
 
 #----------------- TEXTS MU -----------------------------------------
@@ -647,7 +982,7 @@ xtext_mu.SetTextSize(0.045)
 ytext_mu = r.TLatex(.13, .85,"RMS = {:.4g}cm                         mean = {:.4g}cm #pm {:.4g}cm".format(targ_y_mu.GetRMS(),targ_y_mu.GetMean(),targ_y_mu.GetMeanError()))
 ytext_mu.SetNDC(r.kTRUE)
 ytext_mu.SetTextSize(0.045)
-dtext2_mu = r.TLatex(.5, .65,"<15cm: {:.4g}%".format(target_dist_mu.Integral(0,15)/target_dist_mu.Integral()*100))
+dtext2_mu = r.TLatex(.5, .65,"<15cm: {:.4g}%".format(target_dist_mu.Integral(0,15)/(1+target_dist_mu.Integral())*100))
 dtext2_mu.SetNDC(r.kTRUE)
 xytext_mu = r.TLatex(.13,.85,"Number of tracks: {}".format(target_xy_mu.Integral()))
 xytext_mu.SetNDC(r.kTRUE)
@@ -661,7 +996,7 @@ ytext_amu = r.TLatex(.13, .85,"RMS = {:.4g}cm                         mean = {:.
 ytext_amu.SetNDC(r.kTRUE)
 ytext_amu.SetTextSize(0.045)
 dtext = r.TLatex(.5, .75,"distance to target centre")
-dtext2_amu = r.TLatex(.5, .65,"<15cm: {:.4g}%".format(target_dist_amu.Integral(0,15)/target_dist_amu.Integral()*100))
+dtext2_amu = r.TLatex(.5, .65,"<15cm: {:.4g}%".format(target_dist_amu.Integral(0,15)/(1+target_dist_amu.Integral())*100))
 dtext.SetNDC(r.kTRUE)
 dtext2_amu.SetNDC(r.kTRUE)
 xytext_amu = r.TLatex(.13,.85,"Number of tracks: {}".format(target_xy_amu.Integral()))
@@ -682,7 +1017,7 @@ ctarg.cd(2)
 target_dist.GetXaxis().SetTitle('dist [cm]')
 target_dist.Draw('HIST BAR')
 dtext.Draw()
-dtext2.Draw()
+#dtext2.Draw()
 ctarg.cd(3)
 targ_x.GetXaxis().SetTitle('x [cm]')
 targ_x.Draw('HIST BAR')
@@ -708,7 +1043,7 @@ ctarg_mu.cd(2)
 target_dist_mu.GetXaxis().SetTitle('dist [cm]')
 target_dist_mu.Draw('HIST BAR')
 dtext.Draw()
-dtext2_mu.Draw()
+#dtext2_mu.Draw()
 ctarg_mu.cd(3)
 targ_x_mu.GetXaxis().SetTitle('x [cm]')
 targ_x_mu.Draw('HIST BAR')
@@ -734,7 +1069,7 @@ ctarg_amu.cd(2)
 target_dist_amu.GetXaxis().SetTitle('dist [cm]')
 target_dist_amu.Draw('HIST BAR')
 dtext.Draw()
-dtext2_amu.Draw()
+#dtext2_amu.Draw()
 ctarg_amu.cd(3)
 targ_x_amu.GetXaxis().SetTitle('x [cm]')
 targ_x_amu.Draw('HIST BAR')
@@ -759,61 +1094,3 @@ flag.Draw()
 cut.Draw()
 mom_canv.Draw()
 mom_canv.SaveAs("hists/nofield/{}/mom_reco_tracks.pdf".format(directory))
-
-#----------------------------------------------------------------------------------
-'''
-cproj = r.TCanvas('cproj', 'cproj', 2*950,650)
-cproj.Divide(2,1)
-
-bfields = [0.0]
-infox = [0,0]
-infoy = [0,0]
-
-m = 1
-k = 0
-X = h00.ProjectionX()
-X.SetTitle('x projection {}'.format(bfields[k]))
-X.SetStats(False)
-meanx = X.GetMean()
-infox[k] = r.TLatex(.2, .75,"mean: {:.4g}".format(meanx))
-infox[k].SetNDC(r.kTRUE)
-Y = h00.ProjectionY()
-Y.SetTitle('y projection {}'.format(bfields[k]))
-Y.SetStats(False)
-meany = Y.GetMean()
-infoy[k] = r.TLatex(.2, .75,"mean: {:.4g}".format(meany))
-infoy[k].SetNDC(r.kTRUE)
-cproj.cd(m)
-X.Draw('HIST BAR')
-infox[k].Draw()
-m = m+1
-cproj.cd(m)
-Y.Draw('HIST BAR')
-infoy[k].Draw()
-cproj.Update()
-m = m+1
-k = k+1
-cproj.Draw()
-cproj.SaveAs("hists/nofield/fittracks_proj.pdf")
-cproj.Close()
-
-#----------------------------------------------------------------------------------
-
-cpz = r.TCanvas('cpz', 'cpz', 950,650)
-
-cpz.cd(1)
-pz00.GetXaxis().SetTitle('p_{z} [GeV]')
-pz00.Draw('HIST BAR')
-cpz.Draw()
-cpz.SaveAs("hists/nofield/fittracks_pz.pdf")
-cpz.Close()
-
-cz = r.TCanvas('cz', 'cz', 950,650)
-
-cz.cd(1)
-z00.GetXaxis().SetTitle('z')
-z00.Draw('HIST BAR')
-cz.Draw()
-cz.SaveAs("hists/nofield/fittracks_z.pdf")
-cz.Close()
-'''
