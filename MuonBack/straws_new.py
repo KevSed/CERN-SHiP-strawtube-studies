@@ -307,6 +307,7 @@ bcan.cd(1)
 bfield = r.TGraph()
 for n in range(len(fields)):
     bfield.SetPoint(n,fields[n],hists[n].Integral()+1)
+    print hists[n].Integral()+1
 bfield.SetTitle('Number of total hits in first plane of T1 for different B-fields')
 bfield.SetMarkerStyle(5)
 bfield.SetMarkerSize(3)
